@@ -3,6 +3,7 @@ package server;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import gui.GUIMain;
 import gui.GUIStart;
 import network.Listen;
 
@@ -15,28 +16,24 @@ public class Server extends JFrame {
 
 	private Timer servertick;
 	
-	public Server()
-	{
-		new GUIStart();
+	public Server() {
+		//new GUIStart();
+		new GUIMain();
 		new Listen();
 		
-		servertick = new Timer(1000, new ActionListener() 
-		{
-            public void actionPerformed(ActionEvent e)  
-            {
+		servertick = new Timer(1000, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
             	tick();
             }
         });  
 		servertick.start();
 	}
 	
-	public static void main(String[] args) 
-	{
+	public static void main(String[] args) {
 		new Server();
     }
 	
-	public void tick()
-	{
+	public void tick() {
 		
 	}
 }

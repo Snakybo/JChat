@@ -13,6 +13,7 @@ public class Listen {
 	public Listen() {
 		try {
 			int port = 1337;
+			@SuppressWarnings("resource")
 			ServerSocket serverSocket = new ServerSocket(port);
 			GUIMain.jta.append("Server Started and listening for messages on port " + port + ".\n");
 			
