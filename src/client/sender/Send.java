@@ -9,13 +9,11 @@ public class Send
 {
 	private static Socket socket;
 	
-	public Send()
-	{
-		
-	}
-	
 	public void sendInfoToServer(String info, String ip, int port)
 	{
+		System.out.println(info + " " + ip + ":" + port);
+		
+		/*
         try 
         {
 			socket = new Socket(ip, port);
@@ -34,5 +32,6 @@ public class Send
         {
             exception.printStackTrace();
         }
+        */
 	}
 }

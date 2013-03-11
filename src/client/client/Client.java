@@ -18,6 +18,7 @@ public class Client extends JFrame
     private JButton sendButton;
     
     private SendMessage message = new SendMessage();
+    private SendCommand command = new SendCommand();
  
     public Client()
     {
@@ -49,7 +50,15 @@ public class Client extends JFrame
     	{
             public void actionPerformed(ActionEvent e)  
             {
-            	message.SendClientMessage("client-name", "client-pass", inputField.getText(), inputIP.getText(), Integer.parseInt(inputPort.getText()));
+            	char cmdcheck = inputField.getText().charAt(0);
+            	if (cmdcheck == '/')
+    			{
+            		command.NewCommand("client-name", "client-pass", inputField.getText().substring(1), inputIP.getText(), Integer.parseInt(inputPort.getText()));
+    			}
+            	else
+            	{
+            		message.SendClientMessage("client-name", "client-pass", inputField.getText(), inputIP.getText(), Integer.parseInt(inputPort.getText()));
+            	}
             	inputField.setText("");
             }
     	});
