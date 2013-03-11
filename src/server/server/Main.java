@@ -1,22 +1,43 @@
 package server;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import gui.GUIStart;
-
-import javax.swing.JFrame;
-
 import network.Listen;
 
+import javax.swing.JFrame;
+import javax.swing.Timer;
 
-public class Main extends JFrame {
+public class Main extends JFrame 
+{
 	private static final long serialVersionUID = 1L;
-	
 	public static final float version = 0.2f;
+
+	private Timer servertick;
 	
-	public static void main(String[] args) {
-		// Create GUI
+	public Main()
+	{
 		new GUIStart();
-		
-		// Set up listening connection
 		new Listen();
+		
+		servertick = new Timer(1000, new ActionListener() 
+		{
+            public void actionPerformed(ActionEvent e)  
+            {
+            	tick();
+            }
+        });  
+		servertick.start();
+	}
+	
+	public static void main(String[] args) 
+	{
+		new Main();
     }
+	
+	public void tick()
+	{
+		
+	}
 }

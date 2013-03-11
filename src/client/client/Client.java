@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 
 import sender.*;
 import gui.*;
@@ -13,6 +14,8 @@ import gui.*;
 public class Client extends JFrame
 {   
 	private static final long serialVersionUID = 1L;
+	private Timer clienttick;
+	
 	private JLabel label1, label2, label3;
 	private JTextField inputField, inputIP, inputPort;
     private JButton sendButton;
@@ -71,6 +74,15 @@ public class Client extends JFrame
     	add(inputPort);
     	add(sendButton);
 		repaint();
+		
+		clienttick = new Timer(1000, new ActionListener()  
+		{
+            public void actionPerformed(ActionEvent e)  
+            {
+            	tick();
+            }
+        });  
+		clienttick.start();
     }
     
     public void tick()
