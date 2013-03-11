@@ -1,6 +1,6 @@
 package server;
 
-import gui.GUILogin;
+import gui.GUIStart;
 
 import javax.swing.JFrame;
 
@@ -13,7 +13,7 @@ public class Main extends JFrame {
 	
 	public static void main(String[] args) {
 		// Create GUI
-		new GUILogin();
+		new GUIStart();
 		
 		// Set up listening connection
 		new Listen();

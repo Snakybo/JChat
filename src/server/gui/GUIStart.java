@@ -9,10 +9,10 @@ import javax.swing.JTextField;
 
 import server.Main;
 
-public class GUILogin extends JFrame {
+public class GUIStart extends JFrame {
 	private static final long serialVersionUID = 1L;
 
-	public GUILogin() {
+	public GUIStart() {
 		//Create window
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(250, 150);
