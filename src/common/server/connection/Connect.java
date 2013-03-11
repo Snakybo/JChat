@@ -1,3 +1,4 @@
+package server.connection;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStream;
@@ -12,7 +13,7 @@ public class Connect {
 	
 	public Connect() {
 		try {
-            int port = 7;
+            int port = 1337;
             ServerSocket serverSocket = new ServerSocket(port);
             System.out.println("Server Started and listening to the port " + port);
  
