@@ -33,15 +33,10 @@ public class GUILogin extends JFrame {
 		JPanel jp = new JPanel();
 		JTextField jtf = new JTextField();
 		
-		jtf.setBounds(10,10,25,25);
+		jtf.setColumns(10);
+		jtf.setBounds(20, 5, 30, 30);
 		
 		jp.add(jtf);
 		add(jp);
-		
-//		jta.setRows(25);
-//		jta.setEditable(false);
-//		jta.setLineWrap(true);
-//		jta.setWrapStyleWord(true);
-//		jta.setBounds(5, 5, 345, 395);
 	}
 }
