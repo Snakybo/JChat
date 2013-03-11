@@ -1,22 +1,16 @@
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 
-public class Sender 
+public class Send 
 {
-    private static Socket socket;
-    
-	public Sender()
-	{
-		
-	}
 
-	public void Send(String Message, String ip, int port)
+}
+
+/*
+ 	public void Send(String Message, String ip, int port)
 	{
         try 
         {
@@ -63,4 +57,4 @@ public class Sender
         
         //return "";
 	}
-}
+*/

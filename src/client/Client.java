@@ -12,7 +12,7 @@ public class Client extends JFrame
 	private JTextField inputField, inputIP, inputPort;
     private JButton sendButton;
     
-    private Sender sender = new Sender();
+    //private Sender sender = new Sender();
  
     public Client()
     {
@@ -44,7 +44,7 @@ public class Client extends JFrame
     	{
             public void actionPerformed(ActionEvent e)  
             {
-            	sender.Send(inputField.getText(), inputIP.getText(), Integer.parseInt(inputPort.getText()));
+            	//sender.Send(inputField.getText(), inputIP.getText(), Integer.parseInt(inputPort.getText()));
             	System.out.println(inputField.getText() +" "+ inputIP.getText() +" "+ Integer.parseInt(inputPort.getText()));
             	inputField.setText("");
             }
