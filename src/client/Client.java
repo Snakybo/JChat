@@ -13,6 +13,7 @@ public class Client extends JFrame
     private JButton sendButton;
     
     //private Sender sender = new Sender();
+    private SendMessage message = new SendMessage();
  
     public Client()
     {
@@ -44,6 +45,7 @@ public class Client extends JFrame
     	{
             public void actionPerformed(ActionEvent e)  
             {
+            	message.SendClientMessage("client-name", "client-pass", inputField.getText(), inputIP.getText(), Integer.parseInt(inputPort.getText()));
             	//sender.Send(inputField.getText(), inputIP.getText(), Integer.parseInt(inputPort.getText()));
             	System.out.println(inputField.getText() +" "+ inputIP.getText() +" "+ Integer.parseInt(inputPort.getText()));
             	inputField.setText("");
