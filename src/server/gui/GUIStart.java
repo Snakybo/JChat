@@ -4,25 +4,24 @@ import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import server.Main;
+import server.Server;
 
 public class GUIStart extends JFrame {
 	private static final long serialVersionUID = 1L;
-
+	
 	public GUIStart() {
 		//Create window
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(250, 150);
-		setTitle("DerpChat 2 - Server " + Main.version);
+		setTitle("DerpChat 2 - Server " + Server.version);
 		setResizable(false);
 		setVisible(true);
 		setLocationRelativeTo(null);
 		
 		// Add header label
-		JLabel jl = new JLabel("JChat Server " + Main.version);
+		JLabel jl = new JLabel("JChat Server " + Server.version);
 		add(jl);
 		
 		jl.setFont(new Font("Arial", Font.PLAIN, 25));
@@ -30,13 +29,13 @@ public class GUIStart extends JFrame {
 		jl.setHorizontalAlignment(JLabel.CENTER);
 		
 		// Add textfield
-		JPanel jp = new JPanel();
-		JTextField jtf = new JTextField();
-		
-		jtf.setColumns(10);
-		jtf.setBounds(20, 5, 30, 30);
-		
-		jp.add(jtf);
-		add(jp);
+		JLabel plb = new JLabel("         Port: ");
+		JTextField ptf = new JTextField(6);
+    	
+		plb.setBounds(35, 15, 150, 20); 
+    	ptf.setBounds(60, 50, 150, 20); 
+    	
+    	add(ptf);
+    	add(plb);
 	}
 }

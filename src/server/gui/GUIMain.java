@@ -5,7 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import server.Main;
+import server.Server;
 
 public class GUIMain extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -18,7 +18,7 @@ public class GUIMain extends JFrame {
 		//Create window
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(366, 439);
-		setTitle("DerpChat 2 - Server " + Main.version);
+		setTitle("DerpChat 2 - Server " + Server.version);
 		setResizable(false);
 		setVisible(true);
 		setLocationRelativeTo(null);
