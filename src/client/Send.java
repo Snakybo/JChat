@@ -6,55 +6,32 @@ import java.net.Socket;
 
 public class Send 
 {
-
-}
-
-/*
- 	public void Send(String Message, String ip, int port)
+	private static Socket socket;
+	
+	public Send()
+	{
+		
+	}
+	
+	public void sendInfoToServer(String info, String ip, int port)
 	{
         try 
         {
-        	System.out.println("send 1");
-            String host = ip;
-            InetAddress address = InetAddress.getByName(host);
-            socket = new Socket(address, port);
-
-        	System.out.println("send 2");
+			socket = new Socket(ip, port);
             OutputStream os = socket.getOutputStream();
             OutputStreamWriter osw = new OutputStreamWriter(os);
             BufferedWriter bw = new BufferedWriter(osw);
-
-        	System.out.println("send 3");
-            bw.write(Message);
+            bw.write(info);
             bw.flush();
 
-        	System.out.println("send 4");
-            //InputStream is = socket.getInputStream();
-            //InputStreamReader isr = new InputStreamReader(is);
-            //BufferedReader br = new BufferedReader(isr);
-            //String message = br.readLine();
-
-        	//System.out.println("send 5: " + message);
-        	
-            //return message;
-        } 
+            os.close();
+            osw.close();
+            bw.close();
+            socket.close();
+        }
         catch (Exception exception) 
         {
             exception.printStackTrace();
         }
-        finally 
-        {
-            //Closing the socket
-            try 
-            {
-                socket.close();
-            } 
-            catch(Exception e) 
-            {
-                e.printStackTrace();
-            }
-        }
-        
-        //return "";
 	}
-*/
+}

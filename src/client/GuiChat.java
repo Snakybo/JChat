@@ -1,4 +1,4 @@
-
-public class GuiChat {
+public class GuiChat 
+{
 
 }
