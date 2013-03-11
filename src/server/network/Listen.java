@@ -1,4 +1,4 @@
-package server.network;
+package network;
 import gui.GUIMain;
 
 import java.io.BufferedReader;

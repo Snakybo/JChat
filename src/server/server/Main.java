@@ -4,7 +4,8 @@ import gui.GUIStart;
 
 import javax.swing.JFrame;
 
-import server.network.Listen;
+import network.Listen;
+
 
 public class Main extends JFrame {
 	private static final long serialVersionUID = 1L;
