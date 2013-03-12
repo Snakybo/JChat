@@ -2,7 +2,7 @@ package client.gui;
 
 public class Gui 
 {	
-	public Gui()
+	public Gui(int x, int y)
 	{
 		
 	}
