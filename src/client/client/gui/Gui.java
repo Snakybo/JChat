@@ -1,26 +1,32 @@
 package client.gui;
+import javax.swing.JFrame;
 
-import javax.swing.JPanel;
-
-public class Gui extends JPanel
+public class Gui extends JFrame
 {	
 	private static final long serialVersionUID = 1L;
-	private int w = 0;
-	private int h = 0;
+	private int w = 200;
+	private int h = 200;
 	
 	private GuiChat chat = new GuiChat();
 	
-	public Gui(int width, int height)
+	public Gui(int width, int height, String version)
 	{
-		width = w;
-		height = h;
+		w = width;
+		h = height;
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(w, h);
+		setLocationRelativeTo(null);
+		setTitle("JChat V" + version);
+		setResizable(false);
+		setVisible(true);
 	}
 	
 	public void guiCreate(int id)
 	{
 		switch(id) 
 		{
-			case 1: chat.guiChatCreate(w, h);
+			case 1: { add(chat); chat.guiChatCreate(w, h); }
 		}
 	}
 	
@@ -28,7 +34,7 @@ public class Gui extends JPanel
 	{
 		switch(id)
 		{
-			case 1: chat.guiChatDestroy();
+			case 1: { remove(chat); chat.guiChatDestroy(); }
 		}
 	}
 }

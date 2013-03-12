@@ -1,14 +1,12 @@
 package client.gui;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 public class GuiChat extends JPanel
 {
-	private static final long serialVersionUID = 1L;
-
 	public static String[][] translatechars = {{"#","[n]"},{":","[d]"}};
-	
 	private static JTextArea chatfield;
 	
 	public GuiChat()
@@ -17,12 +15,12 @@ public class GuiChat extends JPanel
 	
 	public void guiChatCreate(int width, int height)
 	{
-		System.out.println("gui chat created");
-		
 		chatfield = new JTextArea("");
-		chatfield.setBounds(10, 10, width - 10, height - 10);
+		chatfield.setBounds(10, 10, 500, 400);
 		chatfield.setEditable(false); 
 		add(chatfield);
+		
+		DisplayMessage("Loading JChat V1.00");
 	}
 	
 	public void guiChatDestroy()
@@ -32,7 +30,7 @@ public class GuiChat extends JPanel
 	
 	public static void DisplayMessage(String info)
 	{
-		chatfield.append(info + "/n");
+		chatfield.append(info + "\n");
 	}
 	
 	public static void DisplayTranslatedMessage(String info)
