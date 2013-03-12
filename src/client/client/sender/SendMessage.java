@@ -1,5 +1,7 @@
 package client.sender;
 
+import java.util.Calendar;
+import client.Client;
 import client.gui.GuiChat;
 
 public class SendMessage extends Send
@@ -12,7 +14,9 @@ public class SendMessage extends Send
 		String info = "";
 		info = "message#" + name + "#" + pass + "#" + translate(message);
 		sendInfoToServer(info, server, port);
-		GuiChat.DisplayTranslatedMessage(info);
+		
+		Calendar calendar = Calendar.getInstance();
+		GuiChat.DisplayMessage("[" + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + "] " + name + ": " + message);
 	}
 	
 	public String translate(String message)

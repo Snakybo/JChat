@@ -9,7 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-//import client.sender.*;
+import client.sender.*;
 import client.Client;
 
 public class GuiChat extends JPanel
@@ -23,8 +23,8 @@ public class GuiChat extends JPanel
 	private JButton chatSettings, chatLogout, chatSend;
 	private JTextField chatnew;
 	
-	//private SendMessage message = new SendMessage();
-	//private SendCommand command = new SendCommand();
+	private SendMessage message = new SendMessage();
+	private SendCommand command = new SendCommand();
 	
 	public GuiChat()
 	{
@@ -52,7 +52,7 @@ public class GuiChat extends JPanel
 		
 	  	chatSend.addActionListener(new ActionListener()  {
             public void actionPerformed(ActionEvent e)  {
-            	DisplayMessage("[00:00] " + Client.ClientName + ": " + chatnew.getText());
+        		message.SendClientMessage(Client.ClientName, Client.ClientPass, chatnew.getText(), Client.ServerIP, Client.ServerPort);
             	chatnew.setText("");
             	chatnew.requestFocusInWindow();
             }
@@ -66,7 +66,7 @@ public class GuiChat extends JPanel
             {
             	if(e.getKeyCode() == 10)
             	{
-            		DisplayMessage("[00:00] " + Client.ClientName + ": " + chatnew.getText());
+            		message.SendClientMessage(Client.ClientName, Client.ClientPass, chatnew.getText(), Client.ServerIP, Client.ServerPort);
                 	chatnew.setText("");
                 	chatnew.requestFocusInWindow();
             	}
@@ -79,6 +79,7 @@ public class GuiChat extends JPanel
 		add(chatnew);
 		add(userfield);
 		add(chatfield);
+		repaint();
 	}
 	
 	public void guiChatDestroy()
@@ -89,6 +90,7 @@ public class GuiChat extends JPanel
 		remove(chatLogout);
 		remove(chatSend);
 		remove(chatnew);
+		repaint();
 	}
 	
 	public static void DisplayMessage(String info)
