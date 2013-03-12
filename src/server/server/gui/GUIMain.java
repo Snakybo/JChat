@@ -33,8 +33,6 @@ public class GUIMain extends JFrame {
 		
 		jp.add(jta);
 		add(jp);
-		
-		jta.append(Server.rootDir);
 	}
 }
 

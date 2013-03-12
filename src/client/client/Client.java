@@ -2,10 +2,11 @@ package client;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
-import client.gui.*;
+import client.gui.Gui;
  
 public class Client extends JFrame
 {   

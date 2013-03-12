@@ -10,10 +10,11 @@ import server.gui.GUIMain;
 
 public class Listen {
 	private static Socket socket;
+	private int port;
 		
 	public Listen(int portNum) {
 		try {
-			int port = portNum;
+			port = portNum;
 			@SuppressWarnings("resource")
 			ServerSocket serverSocket = new ServerSocket(port);
 			GUIMain.jta.append("Server Started and listening for messages on port " + port + ".\n");
@@ -27,7 +28,7 @@ public class Listen {
 				GUIMain.jta.append("Message received from client is " + msg + "\n");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			GUIMain.jta.append("Port " + port + " already in use!\n");
 		} finally {
 			try {
 				socket.close();
