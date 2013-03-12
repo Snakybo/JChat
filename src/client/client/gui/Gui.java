@@ -16,8 +16,9 @@ public class Gui extends JFrame
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(w, h);
+		//setLayout(null); 
 		setLocationRelativeTo(null);
-		setTitle("JChat V" + version);
+		setTitle("JChat-Client V" + version);
 		setResizable(false);
 		setVisible(true);
 	}
