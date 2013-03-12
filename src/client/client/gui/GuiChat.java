@@ -2,17 +2,20 @@ package client.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import client.sender.*;
+//import client.sender.*;
 import client.Client;
 
 public class GuiChat extends JPanel
 {
+	private static final long serialVersionUID = 1L;
+	
 	public static String[] chat = new String[32];
 	public static String[][] translatechars = {{"#","[n]"},{":","[d]"}};
 	
@@ -20,8 +23,8 @@ public class GuiChat extends JPanel
 	private JButton chatSettings, chatLogout, chatSend;
 	private JTextField chatnew;
 	
-	private SendMessage message = new SendMessage();
-	private SendCommand command = new SendCommand();
+	//private SendMessage message = new SendMessage();
+	//private SendCommand command = new SendCommand();
 	
 	public GuiChat()
 	{
@@ -45,13 +48,30 @@ public class GuiChat extends JPanel
 		chatfield.setBounds(10, 10, width - 220, height - 85);
 		chatfield.setEditable(false); 
 		userfield.setEditable(false); 
+		chatnew.requestFocusInWindow();
 		
 	  	chatSend.addActionListener(new ActionListener()  {
             public void actionPerformed(ActionEvent e)  {
             	DisplayMessage("[00:00] " + Client.ClientName + ": " + chatnew.getText());
             	chatnew.setText("");
+            	chatnew.requestFocusInWindow();
             }
 		});
+	  	
+	  	chatnew.addKeyListener(new KeyAdapter() 
+	  	{
+            public void keyReleased(KeyEvent e)  { }
+            public void keyTyped(KeyEvent e) { }
+            public void keyPressed(KeyEvent e) 
+            {
+            	if(e.getKeyCode() == 10)
+            	{
+            		DisplayMessage("[00:00] " + Client.ClientName + ": " + chatnew.getText());
+                	chatnew.setText("");
+                	chatnew.requestFocusInWindow();
+            	}
+            }
+        });
 		
 		add(chatSettings);
 		add(chatLogout);
