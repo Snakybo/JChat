@@ -1,7 +1,6 @@
-package server.network;
+package server.network.receive;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
@@ -11,7 +10,7 @@ import server.Server;
 import server.gui.GUIMain;
 
 public class Listen {
-	private static Socket socket = null;
+	private static Socket socket;
 	private int port;
 		
 	public Listen() {
@@ -34,14 +33,7 @@ public class Listen {
 		} finally {
 			try {
 				socket.close();
-			}  catch(Exception e) { }
+			}  catch(Exception e) {	}
 		}
-	}
-	
-	public static void closePorts() {
-		try {
-			socket.close();
-			GUIMain.jta.append("Server closed\n");
-		} catch (IOException e) { }
 	}
 }

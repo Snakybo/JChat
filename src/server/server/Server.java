@@ -9,7 +9,7 @@ import javax.swing.Timer;
 
 import server.filehandler.FileCreate;
 import server.gui.GUIMain;
-import server.network.Listen;
+import server.network.receive.Listen;
 
 public class Server extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -50,11 +50,5 @@ public class Server extends JFrame {
 		String path = dir.toString();
 		
 		return path;
-	}
-	
-	public static void resetServer() {
-		GUIMain.jta.append("Server restarting..\n");
-		Listen.closePorts();
-		new Listen();
 	}
 }

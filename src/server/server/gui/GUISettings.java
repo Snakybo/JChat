@@ -9,6 +9,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -81,7 +82,8 @@ public class GUISettings extends JFrame implements ActionListener {
 				if (intText >= 1 && intText <= 65536) {
 					Server.listenPort = intText;
 					setVisible(false);
-					Server.resetServer();
+					JOptionPane.showMessageDialog(null, "Settings saved, server closing..");
+					System.exit(0);
 				} else {
 					jl3.setText("Port number is out of range (1 - 65536)");
 					jl3.setFont(new Font("Arial", Font.BOLD, 13));

@@ -3,6 +3,8 @@ package server.gui;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -12,6 +14,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import server.Server;
+import server.network.send.SendCmd;
 
 public class GUIMain extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
@@ -61,11 +64,26 @@ public class GUIMain extends JFrame implements ActionListener {
 		jta.append("Starting server..\n");
 		
 		jbtn2.addActionListener(this);
+		jbtn1.addActionListener(this);
+		jtp.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent e)  { }
+            public void keyTyped(KeyEvent e) { }
+            public void keyPressed(KeyEvent e) {
+            	if(e.getKeyCode() == 10) {
+            		new SendCmd(jtp.getText());
+            	}
+            }
+        });
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String btn = e.getActionCommand();
+		
+		if (btn == "Send") {
+			new SendCmd(jtp.getText());
+		}
+		
 		if (btn == "Config") {
 			new GUISettings();
 		}
