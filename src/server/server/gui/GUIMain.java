@@ -14,7 +14,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import server.Server;
-import server.network.send.SendCmd;
+import server.network.send.SendMsg;
 
 public class GUIMain extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
@@ -70,7 +70,8 @@ public class GUIMain extends JFrame implements ActionListener {
             public void keyTyped(KeyEvent e) { }
             public void keyPressed(KeyEvent e) {
             	if(e.getKeyCode() == 10) {
-            		new SendCmd(jtp.getText());
+            		new SendMsg(jtp.getText());
+            		jtp.setText("");
             	}
             }
         });
@@ -81,7 +82,8 @@ public class GUIMain extends JFrame implements ActionListener {
 		String btn = e.getActionCommand();
 		
 		if (btn == "Send") {
-			new SendCmd(jtp.getText());
+			new SendMsg(jtp.getText());
+			jtp.setText("");
 		}
 		
 		if (btn == "Config") {

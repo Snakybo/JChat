@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import server.Server;
+import server.file.FileWrite;
 
 public class GUISettings extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
@@ -82,6 +83,7 @@ public class GUISettings extends JFrame implements ActionListener {
 				if (intText >= 1 && intText <= 65536) {
 					Server.listenPort = intText;
 					setVisible(false);
+					FileWrite.WriteConfig();
 					JOptionPane.showMessageDialog(null, "Settings saved, server closing..");
 					System.exit(0);
 				} else {

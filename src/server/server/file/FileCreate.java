@@ -11,7 +11,7 @@ import server.gui.GUIMain;
 public class FileCreate {
 	public FileCreate() {
 		if (Server.debug == false) {
-			String defaultText = "# JChat Server File\n# Copyright Ted80, Snakybo 2013";
+			String defaultText = "# JChat Server File\n# Copyright Ted80, Snakybo 2013\n\n";
 			
 			GUIMain.jta.append("Checking if needed files exist..\n");
 			GUIMain.jta.append("Root: " + Server.rootDir + "\n");
@@ -82,7 +82,7 @@ public class FileCreate {
 				}
 			} catch(IOException e) { }
 		} else {
-			GUIMain.jta.append("Running in debug mode");
+			GUIMain.jta.append("Running in debug mode\n");
 		}
 	}
 }

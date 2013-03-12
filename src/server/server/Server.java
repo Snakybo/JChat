@@ -13,10 +13,10 @@ import server.network.receive.Listen;
 
 public class Server extends JFrame {
 	private static final long serialVersionUID = 1L;
-	public static final String version = "0.34";
+	public static final String version = "0.36";
 	public static final String rootDir =  getRoot() + "\\server\\";
 	public static final String fileExt = ".jc";
-	public static final Boolean debug = true;
+	public static final Boolean debug = false;
 	public static int listenPort = 1337;
 	
 
@@ -27,6 +27,7 @@ public class Server extends JFrame {
 		
 		new FileCreate();		
 		new Listen();
+		
 		
 		servertick = new Timer(1000, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
