@@ -1,30 +1,37 @@
 package server;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import gui.GUIMain;
-import gui.GUIStart;
-import network.Listen;
+import java.io.File;
 
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
+import server.filehandler.FileCreate;
+import server.gui.GUIMain;
+import server.network.Listen;
+
+
 public class Server extends JFrame {
 	private static final long serialVersionUID = 1L;
-	public static final float version = 0.2f;
+	public static final float version = 0.3f;
+	public static final String rootDir = getRoot() + "/server/";
+	
 
 	private Timer servertick;
 	
 	public Server() {
-		//new GUIStart();
+		new FileCreate();
+		
+//		new GUIStart();
 		new GUIMain();
-		new Listen();
+		new Listen(7);
 		
 		servertick = new Timer(1000, new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	tick();
-            }
+	        public void actionPerformed(ActionEvent e) {
+	        	tick();
+	        }
         });  
 		servertick.start();
 	}
@@ -35,5 +42,9 @@ public class Server extends JFrame {
 	
 	public void tick() {
 		
+	}
+	
+	public static File getRoot() {
+		return new File(Server.class.getProtectionDomain().getCodeSource().getLocation().getPath());
 	}
 }

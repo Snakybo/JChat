@@ -1,8 +1,7 @@
-package gui;
+package server.gui;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import server.Server;
@@ -10,9 +9,8 @@ import server.Server;
 public class GUIMain extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
-	public static JPanel jp;
+	private JPanel jp;
 	public static JTextArea jta;
-	public static JScrollPane jsp;
 	
 	public GUIMain() {
 		//Create window
@@ -26,7 +24,6 @@ public class GUIMain extends JFrame {
 		// Create text area
 		jp = new JPanel();
 		jta = new JTextArea();
-		jsp = new JScrollPane(jta);
 		
 		jta.setRows(25);
 		jta.setEditable(false);
@@ -36,6 +33,8 @@ public class GUIMain extends JFrame {
 		
 		jp.add(jta);
 		add(jp);
+		
+		System.out.println("done");
 	}
 }
 

@@ -1,5 +1,4 @@
-package network;
-import gui.GUIMain;
+package server.network;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -7,18 +6,19 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import server.gui.GUIMain;
+
 public class Listen {
 	private static Socket socket;
 		
-	public Listen() {
+	public Listen(int portNum) {
 		try {
-			int port = 1337;
+			int port = portNum;
 			@SuppressWarnings("resource")
 			ServerSocket serverSocket = new ServerSocket(port);
 			GUIMain.jta.append("Server Started and listening for messages on port " + port + ".\n");
 			
 			while(true) {
-				//Reading the message from the client
 				socket = serverSocket.accept();
 				InputStream is = socket.getInputStream();
 				InputStreamReader isr = new InputStreamReader(is);
