@@ -24,19 +24,7 @@ public class Client
  
     public Client()
     {
-<<<<<<< HEAD
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(screenwidth, screenheight);
-		setLocationRelativeTo(null);
-		setTitle("JChat - Client " + version);
-		setResizable(false);
-		setVisible(true);
-		
-		gui = new Gui(screenwidth, screenheight);
-		add(gui);
-=======
 		gui = new Gui(screenwidth, screenheight, version);
->>>>>>> fixed gui
 		gui.guiCreate(1);
 
 		clienttick = new Timer(1000, new ActionListener()  
