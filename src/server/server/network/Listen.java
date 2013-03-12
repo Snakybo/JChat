@@ -1,20 +1,22 @@
 package server.network;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import server.Server;
 import server.gui.GUIMain;
 
 public class Listen {
 	private static Socket socket;
 	private int port;
 		
-	public Listen(int portNum) {
+	public Listen() {
 		try {
-			port = portNum;
+			port = Server.listenPort;
 			@SuppressWarnings("resource")
 			ServerSocket serverSocket = new ServerSocket(port);
 			GUIMain.jta.append("\nServer Started and listening for messages on port " + port + ".\n");
@@ -34,5 +36,12 @@ public class Listen {
 				socket.close();
 			}  catch(Exception e) { }
 		}
+	}
+	
+	public static void closePorts() {
+		try {
+			socket.close();
+			GUIMain.jta.append("Server closed\n");
+		} catch (IOException e) { }
 	}
 }

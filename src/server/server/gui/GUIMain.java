@@ -1,6 +1,8 @@
 package server.gui;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -11,7 +13,7 @@ import javax.swing.JTextField;
 
 import server.Server;
 
-public class GUIMain extends JFrame {
+public class GUIMain extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	
 	private JPanel jp;
@@ -25,7 +27,6 @@ public class GUIMain extends JFrame {
 		setSize(366, 469);
 		setTitle("JChat - Server " + Server.version);
 		setResizable(false);
-		setVisible(true);
 		setLocationRelativeTo(null);
 		
 		// Create window contents
@@ -55,7 +56,19 @@ public class GUIMain extends JFrame {
 		jp.add(jbtn2);
 		add(jp);
 		
+		setVisible(true);
+		
 		jta.append("Starting server..\n");
+		
+		jbtn2.addActionListener(this);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String btn = e.getActionCommand();
+		if (btn == "Config") {
+			new GUISettings();
+		}
 	}
 }
 

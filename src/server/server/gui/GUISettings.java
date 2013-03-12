@@ -1,81 +1,111 @@
 package server.gui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import server.Server;
-import server.network.Listen;
 
 public class GUISettings extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	
-	private JLabel jl, pl, el;
-	private JTextField ptf;
-	private JButton btn;
+	private JPanel jp;
+	private JLabel jl1, jl2, jl3;
+	private JTextField jtp;
+	private JButton jbtn1, jbtn2;
 	
 	public GUISettings() {
 		//Create window
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(250, 150);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setSize(366, 469);
 		setTitle("JChat - Server " + Server.version);
 		setResizable(false);
-		setVisible(true);
 		setLocationRelativeTo(null);
 		
-		// Add header label
-		jl = new JLabel("JChat Server " + Server.version);
-		add(jl);
+		// Create window contents
+		jp = new JPanel();
+		jl1 = new JLabel();
+		jl2 = new JLabel();
+		jl3 = new JLabel();
+		jtp = new JTextField();
+		jbtn1 = new JButton("Save");
+		jbtn2 = new JButton("Cancel");
 		
-		jl.setFont(new Font("Arial", Font.PLAIN, 25));
-		jl.setVerticalAlignment(JLabel.TOP);
-		jl.setHorizontalAlignment(JLabel.CENTER);
+		jp.setLayout(null);
+
+		jl1.setText("- JChat Server Config -");
+		jl1.setFont(new Font("Arial", Font.BOLD, 25));
+		jl1.setHorizontalAlignment(SwingConstants.RIGHT);
+		jl1.setBounds(15, 5, 300 , 30);
 		
-		// Add textfield
-		pl = new JLabel("         Port: ");
-		ptf = new JTextField(13);
-		btn = new JButton("Start Server");
+		jl2.setText("Port:");
+		jl2.setBounds(55, -30, 100, 200);
 		
-		pl.setBounds(40, 10, 100, 20); 
-    	ptf.setBounds(65, 50, 150, 20);
-    	btn.setBounds(((250 / 2) - (120 / 2)), 75, 120, 20);
-    	
-    	add(ptf);
-    	add(btn);
-    	add(pl);
-    	
-    	btn.addActionListener(this);
+		jtp.setText(Integer.toString(Server.listenPort));
+		jtp.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		jtp.setBounds(90, 60, 200 , 20);
+		
+		jbtn1.setBounds(170, 415, 90, 20);
+		jbtn2.setBounds(265, 415, 90, 20);
+		
+		jp.add(jl1);
+		jp.add(jl2);
+		jp.add(jtp);
+		jp.add(jbtn1);
+		jp.add(jbtn2);
+		add(jp);
+		
+		setVisible(true);
+		
+		jbtn1.addActionListener(this);
+		jbtn2.addActionListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		try {
-			String ptfText = ptf.getText(); 
-			int ptfInt = Integer.parseInt(ptfText);
-			if (ptfInt >= 1 && ptfInt <= 65535) {
-				setVisible(false);
-		    	new GUIMain();
-		    	new Listen(ptfInt);
-			} else {
-				System.out.println("werk niet");
-				el = new JLabel("Port smust be a number");
-				
-				el.setBounds(10, 10, 100, 20);
-				
-				add(el);
+		String btn = e.getActionCommand();
+		
+		if (btn == "Save") {
+			try {
+				int intText = Integer.parseInt(jtp.getText());
+			
+				if (intText >= 1 && intText <= 65536) {
+					Server.listenPort = intText;
+					setVisible(false);
+					Server.resetServer();
+				} else {
+					jl3.setText("Port number is out of range (1 - 65536)");
+					jl3.setFont(new Font("Arial", Font.BOLD, 13));
+					jl3.setHorizontalAlignment(SwingConstants.CENTER);
+					jl3.setForeground(Color.RED);
+					jl3.setBounds(30, 32, 300 , 30);
+					jp.add(jl3);
+					jp.repaint();
+				}
+			} catch(Exception ex) {
+				jl3.setText("Port must be numeric");
+				jl3.setFont(new Font("Arial", Font.BOLD, 13));
+				jl3.setHorizontalAlignment(SwingConstants.CENTER);
+				jl3.setForeground(Color.RED);
+				jl3.setBounds(30, 32, 300 , 30);
+				jp.add(jl3);
+				jp.repaint();
 			}
-		} catch(NumberFormatException a) {
-			System.out.println("werk niet");
-			el = new JLabel("Port smust be a number");
-			
-			el.setBounds(10, 10, 100, 20);
-			
-			add(el);
+		}
+		
+		if (btn == "Cancel") {
+			setVisible(false);
 		}
 	}
 }
+
+
