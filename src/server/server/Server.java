@@ -13,7 +13,7 @@ import server.network.Listen;
 
 public class Server extends JFrame {
 	private static final long serialVersionUID = 1L;
-	public static final String version = "0.32";
+	public static final String version = "0.33";
 	public static final String rootDir =  getRoot() + "\\server\\";
 	public static final String fileExt = ".jc";
 	

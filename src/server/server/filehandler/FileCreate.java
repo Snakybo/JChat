@@ -9,7 +9,7 @@ import server.gui.GUIMain;
 public class FileCreate {
 	public FileCreate() {
 		GUIMain.jta.append("Checking if needed files exist..\n");
-		GUIMain.jta.append("Root directory: " + Server.rootDir + "\n");
+		GUIMain.jta.append("Root: " + Server.rootDir + "\n");
 		
 		// Directory
 		try {

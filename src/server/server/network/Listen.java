@@ -17,7 +17,7 @@ public class Listen {
 			port = portNum;
 			@SuppressWarnings("resource")
 			ServerSocket serverSocket = new ServerSocket(port);
-			GUIMain.jta.append("Server Started and listening for messages on port " + port + ".\n");
+			GUIMain.jta.append("\nServer Started and listening for messages on port " + port + ".\n");
 			
 			while(true) {
 				socket = serverSocket.accept();
@@ -25,7 +25,7 @@ public class Listen {
 				InputStreamReader isr = new InputStreamReader(is);
 				BufferedReader br = new BufferedReader(isr);
 				String msg = br.readLine();
-				GUIMain.jta.append("Message received from client is " + msg + "\n");
+				GUIMain.jta.append("Received message from client: " + msg + "\n");
 			}
 		} catch (Exception e) {
 			GUIMain.jta.append("Port " + port + " already in use!\n");

@@ -1,10 +1,13 @@
 package server.gui;
 
-import java.awt.Insets;
+import java.awt.Color;
 
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import server.Server;
 
@@ -13,28 +16,43 @@ public class GUIMain extends JFrame {
 	
 	private JPanel jp;
 	public static JTextArea jta;
+	private JTextField jtp;
+	private JButton jbtn1, jbtn2;
 	
 	public GUIMain() {
 		//Create window
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(366, 479);
-		setTitle("DerpChat 2 - Server " + Server.version);
+		setSize(366, 469);
+		setTitle("JChat - Server " + Server.version);
 		setResizable(false);
 		setVisible(true);
 		setLocationRelativeTo(null);
 		
-		// Create text area
+		// Create window contents
 		jp = new JPanel();
 		jta = new JTextArea();
+		jtp = new JTextField();
+		jbtn1 = new JButton("Send");
+		jbtn2 = new JButton("Config");
 		
-		jta.setRows(25);
+		jp.setLayout(null);
+		
 		jta.setEditable(false);
+		jta.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		jta.setLineWrap(true);
 		jta.setWrapStyleWord(true);
-		jta.setBounds(5, 5, 345, 395);
-		jta.setMargin(new Insets(5,5,5,5));
+		jta.setBounds(5, 5, 350 , 405);
+		
+		jtp.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		jtp.setBounds(5, 415, 200 , 20);
+		
+		jbtn1.setBounds(210, 415, 70, 20);
+		jbtn2.setBounds(285, 415, 70, 20);
 		
 		jp.add(jta);
+		jp.add(jtp);
+		jp.add(jbtn1);
+		jp.add(jbtn2);
 		add(jp);
 		
 		jta.append("Starting server..\n");

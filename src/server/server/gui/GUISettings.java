@@ -23,7 +23,7 @@ public class GUISettings extends JFrame implements ActionListener {
 		//Create window
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(250, 150);
-		setTitle("DerpChat 2 - Server " + Server.version);
+		setTitle("JChat - Server " + Server.version);
 		setResizable(false);
 		setVisible(true);
 		setLocationRelativeTo(null);

@@ -29,7 +29,7 @@ public class Client extends JFrame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(screenwidth, screenheight);
 		setLocationRelativeTo(null);
-		setTitle("JChat V" + version);
+		setTitle("JChat - Client " + version);
 		setResizable(false);
 		setVisible(true);
 		
