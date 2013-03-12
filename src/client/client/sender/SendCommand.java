@@ -10,13 +10,13 @@ public class SendCommand extends Send
 		};
 
 	
-	public void SendClientCommand(String name, String pass, String info, String server, int port)
+	public void SendClientCommand(String name, String pass, String info)
 	{
 		String infostring = "command#" + name + "#" + pass + "#" + info;
-		sendInfoToServer(infostring, server, port);
+		sendInfoToServer(infostring);
 	}
 	
-	public void NewCommand(String name, String pass, String info, String server, int port)
+	public void NewCommand(String name, String pass, String info)
 	{
 		String[] input = info.split(" ");
 		String cmdString = "";
@@ -34,7 +34,7 @@ public class SendCommand extends Send
 		
 		if(cmdString.equals("CMD_CLEAN"))
 		{
-			SendClientCommand(name, pass, "CLEAR_SCREEN", server, port);
+			SendClientCommand(name, pass, "CLEAR_SCREEN");
 		} 
 		
 		if(cmdString.equals("CMD_HELP"))

@@ -23,11 +23,13 @@ public class GuiChat extends JPanel
 	private JButton chatSettings, chatLogout, chatSend;
 	private JTextField chatnew;
 	
+	private Send connection = new Send();
 	private SendMessage message = new SendMessage();
 	private SendCommand command = new SendCommand();
 	
 	public GuiChat()
 	{
+		connection.openConnection(Client.ServerIP, Client.ServerPort);
 		setLayout(null); 
 	}
 	
@@ -100,11 +102,11 @@ public class GuiChat extends JPanel
 			char cmdcheck = info.charAt(0);
 			if (cmdcheck == '/')
 			{
-				command.NewCommand(Client.ClientName, Client.ClientPass, info.substring(1), Client.ServerIP, Client.ServerPort);
+				command.NewCommand(Client.ClientName, Client.ClientPass, info.substring(1));
 			}
 			else
 			{
-				message.SendClientMessage(Client.ClientName, Client.ClientPass, info, Client.ServerIP, Client.ServerPort);
+				message.SendClientMessage(Client.ClientName, Client.ClientPass, info);
 			}
 		}
 	}

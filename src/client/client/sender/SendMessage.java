@@ -9,11 +9,11 @@ public class SendMessage extends Send
 	
 	public String[][] translatechars = {{"#","[n]"},{":","[d]"}};
 	
-	public void SendClientMessage(String name, String pass, String message, String server, int port)
+	public void SendClientMessage(String name, String pass, String message)
 	{
 		String info = "";
 		info = "message#" + name + "#" + pass + "#" + translate(message);
-		sendInfoToServer(info, server, port);
+		sendInfoToServer(info);
 		
 		Calendar calendar = Calendar.getInstance();
 		GuiChat.DisplayMessage("[" + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + "] " + name + ": " + message);

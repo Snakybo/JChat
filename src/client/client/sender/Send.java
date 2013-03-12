@@ -1,35 +1,67 @@
 package client.sender;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
+import java.util.Calendar;
+
+import client.gui.GuiChat;
 
 public class Send 
 {
 	private static Socket socket;
+	private OutputStream os;
+	private OutputStreamWriter osw;
 	
-	public void sendInfoToServer(String info, String ip, int port)
+	public void openConnection(String ip, int port)
+	{
+        try 
+        {
+			socket = new Socket(ip, port);
+	        os = socket.getOutputStream();
+	        osw = new OutputStreamWriter(os);
+	        sendInfoToServer("helloserver?");
+        	System.out.println("connected");
+        }
+        catch (Exception exception) 
+        {
+        	System.out.println("cannot open connection");
+        }
+	}
+
+	public void closeConnection(String ip, int port)
+	{
+		try
+		{
+	        os.close();
+	        osw.close();
+	        socket.close();
+		}
+        catch (Exception exception) 
+        {
+            System.out.println("cannot close connection");
+        }
+	}
+	
+	public void sendInfoToServer(String info)
 	{
 		System.out.println(info);
 		
         try 
         {
-			socket = new Socket(ip, port);
-            OutputStream os = socket.getOutputStream();
-            OutputStreamWriter osw = new OutputStreamWriter(os);
-            BufferedWriter bw = new BufferedWriter(osw);
+        	BufferedWriter bw = new BufferedWriter(osw);
             bw.write(info);
             bw.flush();
-
-            os.close();
-            osw.close();
             bw.close();
-            socket.close();
+        	System.out.println("send");
         }
         catch (Exception exception) 
         {
-            exception.printStackTrace();
+        	System.out.println("cannot send info");
         }
         
 	}
