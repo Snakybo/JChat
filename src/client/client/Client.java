@@ -10,7 +10,7 @@ public class Client
 {   
 	private static final long serialVersionUID = 1L;
 	private Timer clienttick;
-	private int screenwidth = 800;
+	private int screenwidth = 803;
 	private int screenheight = 600;
 
     public Gui gui;
