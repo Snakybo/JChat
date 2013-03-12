@@ -2,7 +2,6 @@ package server;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 import javax.swing.JFrame;
 import javax.swing.Timer;
@@ -41,7 +40,8 @@ public class Server extends JFrame {
 		
 	}
 	
-	public static File getRoot() {
-		return null;
+	public static String getRoot() {
+		String path = Server.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+		return path;
 	}
 }
