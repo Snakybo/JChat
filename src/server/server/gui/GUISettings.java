@@ -12,14 +12,14 @@ import javax.swing.JTextField;
 import server.Server;
 import server.network.Listen;
 
-public class GUIStart extends JFrame implements ActionListener {
+public class GUISettings extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	
 	private JLabel jl, pl, el;
 	private JTextField ptf;
 	private JButton btn;
 	
-	public GUIStart() {
+	public GUISettings() {
 		//Create window
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(250, 150);
