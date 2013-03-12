@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 
 public class Gui extends JPanel
 {	
+	private static final long serialVersionUID = 1L;
 	private int w = 0;
 	private int h = 0;
 	

@@ -1,13 +1,9 @@
 package client.sender;
 
-import java.io.BufferedWriter;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.Socket;
 
 public class Send 
 {
-	private static Socket socket;
+	//private static Socket socket;
 	
 	public void sendInfoToServer(String info, String ip, int port)
 	{

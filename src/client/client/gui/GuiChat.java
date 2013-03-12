@@ -5,6 +5,8 @@ import javax.swing.JTextArea;
 
 public class GuiChat extends JPanel
 {
+	private static final long serialVersionUID = 1L;
+
 	public static String[][] translatechars = {{"#","[n]"},{":","[d]"}};
 	
 	private static JTextArea chatfield;
