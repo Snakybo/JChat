@@ -9,6 +9,7 @@ import client.sender.*;
 
 public class GuiChat extends JPanel
 {
+	
 	public static String[][] translatechars = {{"#","[n]"},{":","[d]"}};
 	
 	private static JTextArea chatfield, userfield;

@@ -4,8 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
-import client.gui.Gui;
- 
+import client.gui.*;
+
 public class Client
 {   
 	private static final long serialVersionUID = 1L;

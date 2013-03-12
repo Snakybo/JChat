@@ -4,6 +4,7 @@ import client.gui.GuiChat;
 
 public class SendMessage extends Send
 {
+	
 	public String[][] translatechars = {{"#","[n]"},{":","[d]"}};
 	
 	public void SendClientMessage(String name, String pass, String message, String server, int port)
