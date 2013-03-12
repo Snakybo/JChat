@@ -11,7 +11,7 @@ import server.Server;
 import server.gui.GUIMain;
 
 public class Listen {
-	private static Socket socket;
+	private static Socket socket = null;
 	private int port;
 		
 	public Listen() {
@@ -20,7 +20,7 @@ public class Listen {
 			@SuppressWarnings("resource")
 			ServerSocket serverSocket = new ServerSocket(port);
 			GUIMain.jta.append("\nServer Started and listening for messages on port " + port + ".\n");
-			
+
 			while(true) {
 				socket = serverSocket.accept();
 				InputStream is = socket.getInputStream();

@@ -16,6 +16,7 @@ public class Server extends JFrame {
 	public static final String version = "0.34";
 	public static final String rootDir =  getRoot() + "\\server\\";
 	public static final String fileExt = ".jc";
+	public static final Boolean debug = true;
 	public static int listenPort = 1337;
 	
 
