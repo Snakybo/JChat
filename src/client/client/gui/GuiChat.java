@@ -1,26 +1,30 @@
 package client.gui;
 
+import javax.swing.JTextArea;
+
 public class GuiChat 
 {
 	public static String[][] translatechars = {{"#","[n]"},{":","[d]"}};
 	
+	private JTextArea chatfield;
+	
 	public GuiChat()
 	{
-		
+		chatfield = new JTextArea("");
 	}
 	
-	public void guiChatCreate()
+	public static void guiChatCreate()
 	{
-		
 	}
 	
-	public void guiChatDestroy()
+	public static void guiChatDestroy()
 	{
 		
 	}
 	
 	public static void DisplayMessage(String info)
 	{
+		
 	}
 	
 	public static void DisplayTranslatedMessage(String info)
