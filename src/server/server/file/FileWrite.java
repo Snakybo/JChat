@@ -1,4 +1,4 @@
-package server.filehandler;
+package server.file;
 
 public class FileWrite {
 

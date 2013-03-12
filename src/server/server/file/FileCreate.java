@@ -1,4 +1,4 @@
-package server.filehandler;
+package server.file;
 
 import java.io.BufferedWriter;
 import java.io.File;

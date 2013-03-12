@@ -1,14 +1,11 @@
 package server.database;
 
-public class DataServerVersion
-{
-	public DataServerVersion()
-	{
+public class GetServerVersion {
+	public GetServerVersion() {
 		
 	}
 	
-	public String GetServerVersion()
-	{
+	public String GetVersion() {
 		//returns 2 things: newest version and minimum required version to run
 		return "";
 	}
