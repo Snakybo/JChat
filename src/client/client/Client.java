@@ -8,7 +8,6 @@ import client.gui.*;
 
 public class Client
 {   
-	private static final long serialVersionUID = 1L;
 	private Timer clienttick;
 	private int screenwidth = 803;
 	private int screenheight = 600;
