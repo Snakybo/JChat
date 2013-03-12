@@ -1,6 +1,5 @@
 package server;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -12,19 +11,17 @@ import server.filehandler.FileCreate;
 import server.gui.GUIMain;
 import server.network.Listen;
 
-
 public class Server extends JFrame {
 	private static final long serialVersionUID = 1L;
-	public static final float version = 0.3f;
-	public static final String rootDir = getRoot() + "/server/";
+	public static final String version = "0.3";
+	public static final String rootDir =  getRoot() + "/server/";
 	
 
 	private Timer servertick;
 	
 	public Server() {
 		new FileCreate();
-		
-//		new GUIStart();
+
 		new GUIMain();
 		new Listen(7);
 		
@@ -45,6 +42,6 @@ public class Server extends JFrame {
 	}
 	
 	public static File getRoot() {
-		return new File(Server.class.getProtectionDomain().getCodeSource().getLocation().getPath());
+		return null;
 	}
 }
