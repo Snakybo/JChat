@@ -1,8 +1,8 @@
-package database;
+package server.database;
 
-public class DataVersionServer
+public class DataServerVersion
 {
-	public DataVersionServer()
+	public DataServerVersion()
 	{
 		
 	}

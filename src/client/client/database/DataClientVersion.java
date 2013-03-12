@@ -1,8 +1,8 @@
-package database;
+package client.database;
 
-public class DataVersionClient 
+public class DataClientVersion 
 {
-	public DataVersionClient()
+	public DataClientVersion()
 	{
 		
 	}

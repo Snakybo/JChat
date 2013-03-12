@@ -8,8 +8,9 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 
-import sender.*;
-import gui.*;
+import client.gui.*;
+import client.sender.*;
+
  
 public class Client extends JFrame
 {   

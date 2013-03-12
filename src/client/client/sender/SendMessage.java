@@ -1,6 +1,6 @@
-package sender;
+package client.sender;
 
-import gui.GuiChat;
+import client.gui.GuiChat;
 
 public class SendMessage extends Send
 {
