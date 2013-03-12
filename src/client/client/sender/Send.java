@@ -1,8 +1,8 @@
 package client.sender;
 
-//import java.io.BufferedWriter;
-//import java.io.OutputStream;
-//import java.io.OutputStreamWriter;
+import java.io.BufferedWriter;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.Socket;
 
 public class Send 
@@ -11,7 +11,8 @@ public class Send
 	
 	public void sendInfoToServer(String info, String ip, int port)
 	{
-		/*
+		System.out.println(info);
+		
         try 
         {
 			socket = new Socket(ip, port);
@@ -30,6 +31,6 @@ public class Send
         {
             exception.printStackTrace();
         }
-        */
+        
 	}
 }

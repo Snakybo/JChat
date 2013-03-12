@@ -39,13 +39,13 @@ public class SendCommand extends Send
 		
 		if(cmdString.equals("CMD_HELP"))
 		{
-			if(input[1] == null)
+			if(input.length < 2)
 			{
-				GuiChat.DisplayTranslatedMessage("No parameter found, example: /help [page]");
+				GuiChat.DisplayMessage("No parameter found, example: /help [page]");
 			}
 			else
 			{
-				GuiChat.DisplayTranslatedMessage("Display help");
+				GuiChat.DisplayMessage("you yelled for help but the server didn't anwser....");
 			}
 		} 
 	}

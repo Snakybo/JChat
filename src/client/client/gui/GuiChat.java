@@ -52,7 +52,7 @@ public class GuiChat extends JPanel
 		
 	  	chatSend.addActionListener(new ActionListener()  {
             public void actionPerformed(ActionEvent e)  {
-        		message.SendClientMessage(Client.ClientName, Client.ClientPass, chatnew.getText(), Client.ServerIP, Client.ServerPort);
+            	PrepairMessage(chatnew.getText());
             	chatnew.setText("");
             	chatnew.requestFocusInWindow();
             }
@@ -66,7 +66,7 @@ public class GuiChat extends JPanel
             {
             	if(e.getKeyCode() == 10)
             	{
-            		message.SendClientMessage(Client.ClientName, Client.ClientPass, chatnew.getText(), Client.ServerIP, Client.ServerPort);
+            		PrepairMessage(chatnew.getText());
                 	chatnew.setText("");
                 	chatnew.requestFocusInWindow();
             	}
@@ -91,6 +91,22 @@ public class GuiChat extends JPanel
 		remove(chatSend);
 		remove(chatnew);
 		repaint();
+	}
+	
+	public void PrepairMessage(String info)
+	{
+		if(info.length() > 0)
+		{
+			char cmdcheck = info.charAt(0);
+			if (cmdcheck == '/')
+			{
+				command.NewCommand(Client.ClientName, Client.ClientPass, info.substring(1), Client.ServerIP, Client.ServerPort);
+			}
+			else
+			{
+				message.SendClientMessage(Client.ClientName, Client.ClientPass, info, Client.ServerIP, Client.ServerPort);
+			}
+		}
 	}
 	
 	public static void DisplayMessage(String info)
