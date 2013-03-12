@@ -34,6 +34,7 @@ public class Client extends JFrame
 		setVisible(true);
 		
 		gui = new Gui(screenwidth, screenheight);
+		add(gui);
 		gui.guiCreate(1);
 
 		clienttick = new Timer(1000, new ActionListener()  

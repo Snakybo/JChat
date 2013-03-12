@@ -1,25 +1,33 @@
 package client.gui;
 
-public class Gui 
+import javax.swing.JPanel;
+
+public class Gui extends JPanel
 {	
-	public Gui(int x, int y)
+	private int w = 0;
+	private int h = 0;
+	
+	private GuiChat chat = new GuiChat();
+	
+	public Gui(int width, int height)
 	{
-		
+		width = w;
+		height = h;
 	}
 	
-	public static void guiCreate(int id)
+	public void guiCreate(int id)
 	{
 		switch(id) 
 		{
-			case 1: GuiChat.guiChatCreate();
+			case 1: chat.guiChatCreate(w, h);
 		}
 	}
 	
-	public static void guiDelete(int id)
+	public void guiDelete(int id)
 	{
 		switch(id)
 		{
-			case 1: GuiChat.guiChatDestroy();
+			case 1: chat.guiChatDestroy();
 		}
 	}
 }
