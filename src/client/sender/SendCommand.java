@@ -1,5 +1,7 @@
 package sender;
 
+import gui.GuiChat;
+
 public class SendCommand extends Send
 {
 	public String[][] cmds = {
@@ -34,15 +36,16 @@ public class SendCommand extends Send
 		{
 			SendClientCommand(name, pass, "CLEAR_SCREEN", server, port);
 		} 
+		
 		if(cmdString.equals("CMD_HELP"))
 		{
 			if(input[1] == null)
 			{
-				//sendmessage -> example: /help [page]
+				GuiChat.DisplayTranslatedMessage("No parameter found, example: /help [page]");
 			}
 			else
 			{
-				//sendmessage -> helpstuff
+				GuiChat.DisplayTranslatedMessage("Display help");
 			}
 		} 
 	}

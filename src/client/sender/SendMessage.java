@@ -1,5 +1,7 @@
 package sender;
 
+import gui.GuiChat;
+
 public class SendMessage extends Send
 {
 	public String[][] translatechars = {{"#","[n]"},{":","[d]"}};
@@ -9,6 +11,7 @@ public class SendMessage extends Send
 		String info = "";
 		info = "message#" + name + "#" + pass + "#" + translate(message);
 		sendInfoToServer(info, server, port);
+		GuiChat.DisplayTranslatedMessage(info);
 	}
 	
 	public String translate(String message)

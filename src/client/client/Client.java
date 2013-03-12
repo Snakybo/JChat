@@ -22,15 +22,24 @@ public class Client extends JFrame
     
     private SendMessage message = new SendMessage();
     private SendCommand command = new SendCommand();
+    public GuiChat chat;
+    
+    public int ClientID = 1;
+    public String ClientName = "";
+    public String ClientPass = "";
+    public String ServerIP = "";
+    public int ServerPort = 1;
  
     public Client()
     {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(230, 230);
+		setSize(800, 600);
 		setLocationRelativeTo(null);
 		setTitle("DerpChat 2 - Client");
 		setResizable(false);
 		setVisible(true);
+		
+		chat = new GuiChat();
 		
 		label1 = new JLabel("MESSAGE:");
 		label2 = new JLabel("HOST IP:");
