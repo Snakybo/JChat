@@ -9,6 +9,7 @@ public class Send
 	{
 		System.out.println(info + " " + ip + ":" + port);
 		
+		//fix
 		/*
         try 
         {
