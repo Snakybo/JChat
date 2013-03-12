@@ -51,14 +51,16 @@ public class FileCreate {
 			}
 		} catch(IOException e) { }
 		
-		// Settings
+		// Config
 		try {
-			File fileSettings = new File(Server.rootDir + "settings" + Server.fileExt);
+			File fileSettings = new File(Server.rootDir + "config" + Server.fileExt);
 			if (fileSettings.createNewFile()) {
-				GUIMain.jta.append("    - settings" + Server.fileExt + " made.\n");
+				GUIMain.jta.append("    - config" + Server.fileExt + " made.\n");
 			} else {
-				GUIMain.jta.append("    - settings" + Server.fileExt + " exists.\n");
+				GUIMain.jta.append("    - config" + Server.fileExt + " exists.\n");
 			}
 		} catch(IOException e) { }
+		
+		FileWrite.initFiles();
 	}
 }
