@@ -1,15 +1,19 @@
 package client.gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import client.sender.*;
+import client.Client;
 
 public class GuiChat extends JPanel
 {
-	
+	public static String[] chat = new String[32];
 	public static String[][] translatechars = {{"#","[n]"},{":","[d]"}};
 	
 	private static JTextArea chatfield, userfield;
@@ -34,13 +38,20 @@ public class GuiChat extends JPanel
 		chatnew = new JTextField(20);
 		
 		userfield.setBounds(width - 200, 10, 185, height - 110);
-	  	chatSettings.setBounds(width - 105, height - 90, 90, 20); 
-	  	chatLogout.setBounds(width - 200, height - 90, 90, 20); 
-	  	chatSend.setBounds(width - 105, height - 60, 90, 20); 
-	  	chatnew.setBounds(10, height - 60, width - 120, 20); 
-		chatfield.setBounds(10, 10, width - 220, height - 80);
+	  	chatSettings.setBounds(width - 105, height - 95, 90, 20); 
+	  	chatLogout.setBounds(width - 200, height - 95, 90, 20); 
+	  	chatSend.setBounds(width - 105, height - 70, 90, 20); 
+	  	chatnew.setBounds(10, height - 70, width - 120, 20); 
+		chatfield.setBounds(10, 10, width - 220, height - 85);
 		chatfield.setEditable(false); 
 		userfield.setEditable(false); 
+		
+	  	chatSend.addActionListener(new ActionListener()  {
+            public void actionPerformed(ActionEvent e)  {
+            	DisplayMessage("[00:00] " + Client.ClientName + ": " + chatnew.getText());
+            	chatnew.setText("");
+            }
+		});
 		
 		add(chatSettings);
 		add(chatLogout);
@@ -48,8 +59,6 @@ public class GuiChat extends JPanel
 		add(chatnew);
 		add(userfield);
 		add(chatfield);
-		
-		DisplayMessage("Loading JChat V1.00");
 	}
 	
 	public void guiChatDestroy()
@@ -64,7 +73,29 @@ public class GuiChat extends JPanel
 	
 	public static void DisplayMessage(String info)
 	{
-		chatfield.append(info + "\n");
+		for(int i = chat.length - 2; i > -1; i--)
+		{
+			chat[i + 1] = chat[i];
+			if(i == 0) 
+			{ 
+				chat[i] = info; 
+			}
+		}		
+		
+		String newstring = "";
+		for(int i = chat.length - 1; i > -1; i--)
+		{
+			if(chat[i] != null)
+			{
+				newstring += chat[i] + "\n";
+			}	
+			else
+			{
+				newstring += "" + "\n";
+			}
+		}
+		
+		chatfield.setText(newstring);
 	}
 	
 	public static void DisplayTranslatedMessage(String info)
