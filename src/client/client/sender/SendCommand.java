@@ -5,7 +5,7 @@ import client.gui.GuiChat;
 public class SendCommand extends Send
 {
 	public String[][] cmds = {
-			{"CMD_CLEAN","c","clear","clearchat","cleanchat","cls"},
+			{"CMD_CLEAN","c","clear","clearchat","cleanchat","cls","clean"},
 			{"CMD_HELP","help","h"}
 		};
 
