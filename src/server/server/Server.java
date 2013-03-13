@@ -7,10 +7,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 import server.file.FileCreate;
+import server.file.FileRead;
 import server.gui.GUIMain;
+import server.gui.GUISettings;
 import server.network.receive.Listen;
 
 public class Server extends JFrame {
@@ -18,16 +21,28 @@ public class Server extends JFrame {
 	public static final String version = "0.37";
 	public static final String rootDir =  getRoot() + "\\server\\";
 	public static final String fileExt = ".jc";
-	public static final Boolean debug = false;
-	public static int listenPort = 1337;
+	public static Boolean debug = false;
 	
-
+	public static int listenPort = 1337;
+	public static int maxConnections = 10;
+	
 	private Timer servertick;
+	
+	public static void main(String[] args) {
+		if (args.length > 0) {
+			if (args[0].equals("debug")) debug = true;
+		}
+		
+		new Server();
+    }
+	
+	public void tick() { }
 	
 	public Server() {
 		new GUIMain();
 		
-		new FileCreate();		
+		new FileCreate();
+		if (debug == false) FileRead.ReadConfig();
 		new Listen();
 		
 		
@@ -37,14 +52,6 @@ public class Server extends JFrame {
 	        }
         });  
 		servertick.start();
-	}
-	
-	public static void main(String[] args) {
-		new Server();
-    }
-	
-	public void tick() {
-		
 	}
 	
 	public static String getRoot() {
@@ -61,5 +68,12 @@ public class Server extends JFrame {
     	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
     	
     	return sdf.format(cal.getTime());
+	}
+	
+	public static void CloseServer(Boolean ext) {
+		if (GUISettings.portOK && GUISettings.maxConnectionsOK || ext == true) {
+			JOptionPane.showMessageDialog(null, "Settings saved, server closing..");
+			System.exit(0);
+		}
 	}
 }

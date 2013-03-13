@@ -1,7 +1,7 @@
 package client.sender;
 
 import java.util.Calendar;
-import client.Client;
+
 import client.gui.GuiChat;
 
 public class SendMessage extends Send
