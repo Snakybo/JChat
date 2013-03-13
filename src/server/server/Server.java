@@ -82,7 +82,7 @@ public class Server {
 	
 	// Continue the application with warning
 	public static void GiveWarning(String war) {
-		JOptionPane.showMessageDialog(null, war, "Server Error", JOptionPane.WARNING_MESSAGE);
+		JOptionPane.showMessageDialog(null, war, "Server Warning", JOptionPane.WARNING_MESSAGE);
 	}
 	
 	// Get the server's IP adress
