@@ -1,41 +1,26 @@
 package server.file;
 
+import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
 import server.Server;
-import server.gui.GUIMain;
 
 public class FileWrite {
-	public static void WriteHistory(String t, String s, String msg) {
-		String time = "[" + t + "] ";
-		String sender = s + ": ";
-		
-		if (Server.debug == false) {
-			String file = Server.rootDir + "history" + Server.fileExt;
-	
+	public void WriteHistory(String t, String s, String msg) {		
+		if (!Server.debug) {
 			try {
-				FileWriter fw = new FileWriter(file, true);
-				fw.write(time);
-				fw.write(sender);
-				fw.write(msg + "\n");
-				fw.close();
-			} catch (IOException e) { }
-		}
-		
-		GUIMain.jta.append(time + sender + msg + "\n");
-	}
-	
-	public static void WriteConfig() {
-		if (Server.debug == false) {
-			String file = Server.rootDir + "config" + Server.fileExt;
-			
-			try {
-				FileClear.ClearConfig();
-				FileWriter fw = new FileWriter(file, true);
-				fw.write("Port: " + Server.listenPort + "\n");
-				fw.write("Max Connections: " + Server.maxConnections + "\n");
-				fw.close();
+				String time = "[" + t + "] " ;
+				String sender = s + ": ";
+				String file = FileCreate.files[0];
+				
+				FileWriter fWriter = new FileWriter(file, true);
+				BufferedWriter bWriter = new BufferedWriter(fWriter);
+				
+				bWriter.write(time + sender + msg);
+				bWriter.newLine();
+				bWriter.flush();
+				bWriter.close();
 			} catch(IOException e) { }
 		}
 	}
