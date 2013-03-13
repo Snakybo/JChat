@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import server.Server;
+import server.gui.GUIMain;
 
 public class FileWrite {
 	public static void WriteHistory(String t, String s, String msg) {
@@ -18,6 +19,8 @@ public class FileWrite {
 			fw.write(msg + "\n");
 			fw.close();
 		} catch (IOException e) { }
+		
+		GUIMain.jta.append(time + sender + msg + "\n");
 	}
 	
 	public static void WriteConfig() {
