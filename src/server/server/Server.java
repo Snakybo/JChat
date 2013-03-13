@@ -1,5 +1,8 @@
 package server;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -67,7 +70,37 @@ public class Server {
 	
 	// Close application with error
 	public static void CloseWithError(String err) {
-		JOptionPane.showMessageDialog(null, err);
+		JOptionPane.showMessageDialog(null, err, "Server Error", JOptionPane.ERROR_MESSAGE);
 		System.exit(0);
+	}
+	
+	// Close application with message
+	public static void CloseWithMessage(String msg) {
+		JOptionPane.showMessageDialog(null, msg);
+		System.exit(0);
+	}
+	
+	// Continue the application with warning
+	public static void GiveWarning(String war) {
+		JOptionPane.showMessageDialog(null, war, "Server Error", JOptionPane.WARNING_MESSAGE);
+	}
+	
+	// Get the server's IP adress
+	public static String GetIP() {
+		String ip = null;
+		try {
+			URL site = new URL("htstp://api.exip.org/?call=ip");
+			BufferedReader in = new BufferedReader(new InputStreamReader(site.openStream()));
+			ip = in.readLine();
+		} catch (Exception e) {
+			try {
+				URL site = new URL("htstp://icanhazip.com/");
+				BufferedReader in = new BufferedReader(new InputStreamReader(site.openStream()));
+				ip = in.readLine();
+			} catch (Exception ex) {
+				GiveWarning("External IP adress could not be resolved");
+			}
+		}
+		return ip;
 	}
 }

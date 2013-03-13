@@ -1,9 +1,4 @@
 JChat
 =====
 
-Version history:
-
-Client
-
-Server:
-  
+The best IRC in Java ever!
