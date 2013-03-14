@@ -61,7 +61,7 @@ public class Server {
 
 		// Start listening for messages
 		GUI.Append("Starting Server services..");
-		CreateServer.CreateServer();
+		new CreateServer();
 	}
 	
 	// Returns the root directory of the JAR file
