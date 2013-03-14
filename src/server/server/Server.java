@@ -13,11 +13,12 @@ import server.file.FileRead;
 import server.file.FileWrite;
 import server.gui.GUI;
 import server.network.Update;
+import server.network.receive.CreateServer;
 
 public class Server {
 	public static Boolean debug = false;
 	
-	public static final String version = "0.40";
+	public static final String version = "1.0.0";
 	public static final String rootDir = getRoot() + "\\server\\";
 	
 	public static int serverPort = 1337;
@@ -57,16 +58,10 @@ public class Server {
 		} else {
 			GUI.Append("Running in debug mode!");
 		}
-		
-		// Create server threads
-		GUI.Append("Creating threads..");
-		Threads.Create();
-//		
+
 		// Start listening for messages
-		GUI.Append("Starting Listening service..");
-//		Listen.Start();
-		
-		GUI.Append("Server started on: " + GetIP() + ":" + serverPort);
+		GUI.Append("Starting Server services..");
+		CreateServer.CreateServer();
 	}
 	
 	// Returns the root directory of the JAR file
