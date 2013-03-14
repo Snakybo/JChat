@@ -53,9 +53,10 @@ public class Send
             bw.close();
         	System.out.println("send");
         }
-        catch (Exception exception) 
+        catch (Exception e) 
         {
-        	System.out.println("cannot send info");
+        	e.printStackTrace();
+        	//System.out.println("cannot send info");
         }
         
 	}
