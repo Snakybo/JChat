@@ -14,12 +14,16 @@ public class FileCreate {
 	public static Boolean Check() {
 		// Folder
 		File folder = new File(Server.rootDir);
-		if (!folder.exists()) return false;
+		if (!folder.exists()) {
+			return false;	
+		}
 		
 		// Files
 		for (int i = 0; i < files.length; i++) {
 			File file = new File(Server.rootDir + files[i]);
-			if (!file.exists()) return false;
+			if (!file.exists()) {
+				return false;
+			}
 		}
 		
 		return true;

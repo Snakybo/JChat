@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 
 import server.file.FileCreate;
 import server.file.FileRead;
+import server.file.FileWrite;
 import server.gui.GUI;
 import server.network.Update;
 
@@ -30,26 +31,42 @@ public class Server {
 			}
 		}
 		
-		// Check for updates
-		if (Update.CheckUpdate()) Update.RunUpdate();
-		
 		// Create main GUI
 		new GUI();
+		GUI.Append("Starting server on: " + GetIP() + ":" + serverPort);
+		
+		// Check for updates
+		GUI.Append("Checking for updates..");
+		if (Update.CheckUpdate()) {
+			GUI.Append("  - Updates found! Updating server..");
+			Update.RunUpdate();
+		}
 		
 		// Handle files
 		if (!debug) {
+			GUI.Append("Checking for server files..");
 			if (!FileCreate.Check()) {
+				GUI.Append("  - Files missing! Creating..");
 				if (!FileCreate.Create()) CloseWithError("Server could not create files.");
+				if (!FileWrite.WriteConfig()) CloseWithError("Could not write to files.");
+				GUI.Append("  - Files Created!");
 			} else {
+				GUI.Append("  - Files found.");
 				FileRead.Read();
 			}
+		} else {
+			GUI.Append("Running in debug mode!");
 		}
 		
 		// Create server threads
+		GUI.Append("Creating threads..");
 		Threads.Create();
 //		
 		// Start listening for messages
+		GUI.Append("Starting Listening service..");
 //		Listen.Start();
+		
+		GUI.Append("Server started on: " + GetIP() + ":" + serverPort);
 	}
 	
 	// Returns the root directory of the JAR file
@@ -89,12 +106,12 @@ public class Server {
 	public static String GetIP() {
 		String ip = null;
 		try {
-			URL site = new URL("htstp://api.exip.org/?call=ip");
+			URL site = new URL("http://api.exip.org/?call=ip");
 			BufferedReader in = new BufferedReader(new InputStreamReader(site.openStream()));
 			ip = in.readLine();
 		} catch (Exception e) {
 			try {
-				URL site = new URL("htstp://icanhazip.com/");
+				URL site = new URL("http://icanhazip.com/");
 				BufferedReader in = new BufferedReader(new InputStreamReader(site.openStream()));
 				ip = in.readLine();
 			} catch (Exception ex) {
