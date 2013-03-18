@@ -33,10 +33,9 @@ public class FileWrite {
 				String file = JServer.rootDir + "config";
 				String[] settings = {
 						"Port: " + JServer.serverPort, 
-						"Threads: " + JServer.numThreads
 						};
 				
-				//FileClear.clearConfig();
+				FileClear.clearConfig();
 				FileWriter fWriter = new FileWriter(file, true);
 				BufferedWriter bWriter = new BufferedWriter(fWriter);
 				for (int i = 0; i < settings.length; i++) {

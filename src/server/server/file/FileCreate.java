@@ -9,7 +9,7 @@ import server.JServer;
 
 public class FileCreate {
 	public static String[] files = {"history", "config", "users", "ops"};
-	private static String defText = "# JChat Server File\n# Copyright Ted80 and Snakybo\n#";
+	public static String defText = "# JChat Server File\n# Copyright Ted80 and Snakybo\n#";
 	
 	public static Boolean Check() {
 		// Folder

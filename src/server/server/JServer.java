@@ -2,6 +2,7 @@ package server;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
+import java.net.InetAddress;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -21,7 +22,6 @@ public class JServer {
 	public static final String rootDir = getRoot() + "\\server\\";
 	
 	public static int serverPort = 1337;
-	public static int numThreads = 20;
 	
 	public static void main(String[] args) {
 		// Get and handle Command line arguments
@@ -46,6 +46,7 @@ public class JServer {
 			} else {
 				GUI.Append("  - Files found.");
 				FileRead.Read();
+				if (!FileRead.ReadConfig()) GiveWarning("Config file could not be read!");
 			}
 		} else {
 			GUI.Append("Running in debug mode!");
@@ -89,6 +90,17 @@ public class JServer {
 		JOptionPane.showMessageDialog(null, war, "Server Warning", JOptionPane.WARNING_MESSAGE);
 	}
 	
+	// Ask for close
+	public static int AskClose(String que, String queT) {
+		int pane = JOptionPane.showConfirmDialog (null, que, queT, JOptionPane.YES_NO_OPTION);
+		
+		if (pane == JOptionPane.YES_OPTION) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
+	
 	// Get the server's IP adress
 	public static String GetIP() {
 		String ip = null;
@@ -103,8 +115,25 @@ public class JServer {
 				ip = in.readLine();
 			} catch (Exception ex) {
 				GiveWarning("External IP adress could not be resolved");
+				ip = "0.0.0.0";
 			}
 		}
+		return ip;
+	}
+	
+	// Get the local IP adress of the server
+	public static String GetLocalIP() {
+		InetAddress address = null;
+		String ip = null;
+		
+		try {
+			address = InetAddress.getLocalHost();
+			ip = address.getHostAddress();
+		} catch(Exception ex) {
+			GiveWarning("Local IP adress could not be resolved");
+			ip = "0.0.0.0";
+		}
+		
 		return ip;
 	}
 }

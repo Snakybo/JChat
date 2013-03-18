@@ -3,6 +3,8 @@ package server.gui;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -13,11 +15,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.SwingUtilities;
 import javax.swing.text.StyledDocument;
 
-import server.file.FileWrite;
-
 import server.JServer;
+import server.file.FileWrite;
 
 public class GUI extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 2941318999657277463L;
@@ -25,8 +27,8 @@ public class GUI extends JFrame implements ActionListener {
 	public static JTextPane txtArea;
 	private JPanel panel;
 	
-	private JLabel olbl1, olbl2;
-	private JTextField txtField, otxtField1, otxtField2;
+	private JLabel olbl1, ilbl1, ilbl2;
+	private JTextField txtField, otxtField1, itxtField1, itxtField2;
 	private JButton btn1, btn2, obtn1;
 	
 	private Boolean configToggled = false;
@@ -89,41 +91,80 @@ public class GUI extends JFrame implements ActionListener {
 		setSize(500 + 16, 450 + 19);
 		
 		olbl1 = new JLabel();
-		olbl2 = new JLabel();
 		otxtField1 = new JTextField();
-		otxtField2 = new JTextField();
 		obtn1 = new JButton();
 		
+		ilbl1 = new JLabel();
+		ilbl2 = new JLabel();
+		itxtField1 = new JTextField();
+		itxtField2 = new JTextField();
+		
 		olbl1.setText("Port:");
-		olbl2.setText("Max Connections:");
 		olbl1.setBounds(360, 5, 145 , 10);
-		olbl2.setBounds(360, 45, 145, 10);
 		
 		otxtField1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		otxtField2.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		otxtField1.setBounds(360, 20, 145, 20);
-		otxtField2.setBounds(360, 60, 145, 20);
+		otxtField1.setBounds(360, 18, 145, 20);
+		otxtField1.setText(Integer.toString(JServer.serverPort));
+		
+		ilbl1.setText("External IP:");
+		ilbl1.setBounds(360, 38, 145, 20);
+		ilbl2.setText("Local IP:");
+		ilbl2.setBounds(360, 75, 145, 20);
+		
+		itxtField1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		itxtField1.setBounds(360, 56, 145, 20);
+		itxtField1.setText(JServer.GetIP());
+		itxtField1.setEditable(false);
+		
+		itxtField2.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		itxtField2.setBounds(360, 93, 145, 20);
+		itxtField2.setText(JServer.GetLocalIP());
+		itxtField2.setEditable(false);
 		
 		obtn1.setText("Save");
 		obtn1.setBounds(435, 415, 70, 20);
 		
 		panel.add(olbl1);
-		panel.add(olbl2);
 		panel.add(otxtField1);
-		panel.add(otxtField2);
 		panel.add(obtn1);
+		panel.add(ilbl1);
+		panel.add(ilbl2);
+		panel.add(itxtField1);
+		panel.add(itxtField2);
 		repaint();
 		
 		obtn1.addActionListener(this);
+		itxtField1.addFocusListener(new FocusAdapter() {
+			public void focusGained(FocusEvent e) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						itxtField1.selectAll();
+					}
+				});
+			}
+		});
+		itxtField2.addFocusListener(new FocusAdapter() {
+			public void focusGained(FocusEvent e) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						itxtField2.selectAll();
+					}
+				});
+			}
+		});
 	}
 	
 	// Retract the options panel
 	public void Retract() {		
 		panel.remove(olbl1);
-		panel.remove(olbl2);
 		panel.remove(otxtField1);
-		panel.remove(otxtField2);
 		panel.remove(obtn1);
+		panel.remove(ilbl1);
+		panel.remove(ilbl2);
+		panel.remove(itxtField1);
+		panel.remove(itxtField2);		
 		repaint();
 		
 		setSize(350 + 16, 450 + 19);
@@ -158,10 +199,18 @@ public class GUI extends JFrame implements ActionListener {
 		}
 		
 		if (btn == "Save") {
-			if (!FileWrite.WriteConfig()) {
-				JServer.GiveWarning("Could not save configuration");
+			if (!JServer.debug) {
+				if (Integer.parseInt(otxtField1.getText()) >= 1 && Integer.parseInt(otxtField1.getText()) <= 65535) JServer.serverPort = Integer.parseInt(otxtField1.getText());
+				
+				if (!FileWrite.WriteConfig()) {
+					JServer.GiveWarning("Could not save configuration");
+				} else {
+					if (JServer.AskClose("Server settings saved, close server?", "Settings saved") == 0) {
+						System.exit(0);
+					}
+				}
 			} else {
-				JServer.CloseWithMessage("Configuration saved. Closing server");
+				JServer.GiveWarning("Can not save while in debug mode");
 			}
 		}
 	}
