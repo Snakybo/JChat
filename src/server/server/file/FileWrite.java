@@ -4,10 +4,12 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import jexxus.common.Connection;
+
 import server.JServer;
 
 public class FileWrite {
-	public static void WriteHistory(String t, String s, String msg) {		
+	public static void WriteHistory(String t, Connection s, String msg) {		
 		if (!JServer.debug) {
 			try {
 				String time = "[" + t + "] " ;

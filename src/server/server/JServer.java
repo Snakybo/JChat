@@ -12,6 +12,7 @@ import server.file.FileCreate;
 import server.file.FileRead;
 import server.file.FileWrite;
 import server.gui.GUI;
+import server.network.Listen;
 
 public class JServer {
 	public static Boolean debug = false;
@@ -49,6 +50,10 @@ public class JServer {
 		} else {
 			GUI.Append("Running in debug mode!");
 		}
+		
+		// Start listening
+		GUI.Append("Starting server services");
+		new Listen();
 	}
 	
 	// Returns the root directory of the JAR file
