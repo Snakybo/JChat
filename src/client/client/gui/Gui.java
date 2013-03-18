@@ -9,7 +9,7 @@ public class Gui extends JFrame
 	
 	private GuiChat chat = new GuiChat();
 	
-	public Gui(int width, int height, String version)
+	public Gui(int width, int height, int version)
 	{
 		w = width;
 		h = height;

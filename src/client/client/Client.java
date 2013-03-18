@@ -14,7 +14,7 @@ public class Client
 
     public Gui gui;
 
-    public static String version = "1.00";
+    public static int version = 100;
     public static int ClientID = 1;
     public static String ClientName = "client_name";
     public static String ClientPass = "client_pass";
