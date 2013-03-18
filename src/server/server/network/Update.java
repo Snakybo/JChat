@@ -32,11 +32,11 @@ public class Update {
 		
 		// Check for updates
 		if (Integer.parseInt(serverInfo[0]) == 1) {
-			float[] sVersion = Integer.parseInt(Server.version.split("."));
+			//float[] sVersion = Integer.parseInt(Server.version.split("."));
 			String[] nVersion = serverInfo[1].split(".");
 			String[] rVersion = serverInfo[1].split(".");
 			
-			System.out.println(sVersion.length);
+			//System.out.println(sVersion.length);
 			//System.out.println(sVersion[0] + " " + sVersion[1] + " " + sVersion[2]);
 			
 //			int sVersion0 = Integer.parseInt(sVersion[0]);

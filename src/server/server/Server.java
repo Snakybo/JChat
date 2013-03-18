@@ -1,5 +1,6 @@
 package server;
 import java.io.BufferedReader;
+
 import java.io.File;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -31,7 +32,7 @@ public class Server {
 				if (args[i].equals("debug")) debug = true;
 			}
 		}
-		
+
 		// Create main GUI
 		new GUI();
 		GUI.Append("Starting server on: " + GetIP() + ":" + serverPort);
