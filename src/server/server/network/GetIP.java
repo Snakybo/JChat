@@ -29,18 +29,20 @@ public class GetIP {
 	}
 	
 	// Get the local IP adress of the server
-	public static String IntIP() {
+	public static String IntIP(boolean getName) {
 		InetAddress address = null;
 		String ip = null;
+		String name = null;
 		
 		try {
 			address = InetAddress.getLocalHost();
 			ip = address.getHostAddress();
+			name = address.getHostName();
 		} catch(Exception ex) {
 			PopupManager.GiveWarning("Local IP adress could not be resolved");
 			ip = "0.0.0.0";
 		}
 		
-		return ip;
+		if (!getName) { return ip; } else { return name; }
 	}
 }

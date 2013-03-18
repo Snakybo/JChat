@@ -119,7 +119,7 @@ public class GUI extends JFrame implements ActionListener {
 		
 		itxtField2.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		itxtField2.setBounds(360, 93, 145, 20);
-		itxtField2.setText(GetIP.IntIP());
+		itxtField2.setText(GetIP.IntIP(false));
 		itxtField2.setEditable(false);
 		
 		obtn1.setText("Save");

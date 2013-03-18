@@ -8,6 +8,7 @@ import server.file.FileRead;
 import server.file.FileWrite;
 import server.gui.GUI;
 import server.gui.PopupManager;
+import server.network.GetIP;
 import server.network.Listen;
 
 public class JServer {
@@ -17,9 +18,9 @@ public class JServer {
 	public static final String rootDir = getRoot() + "\\server\\";
 	
 	public static int serverPort = 1337;
-	public static String serverIP = "";
+	public static String serverIP = GetIP.ExtIP();
     public static String database = "jchat.ted80.net";
-    public static String serverName = "servername";
+    public static String serverName = GetIP.IntIP(true);
 	
 	public static void main(String[] args) {
 		// Get and handle Command line arguments
