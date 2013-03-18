@@ -3,6 +3,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import server.database.DataServerServerlist;
 import server.file.FileCreate;
 import server.file.FileRead;
 import server.file.FileWrite;
@@ -54,6 +55,7 @@ public class JServer {
 		
 		// Start listening
 		GUI.Append("Attempting to start services..");
+		new DataServerServerlist().UpdateServer();
 		new UpdateStatus();
 		new Listen();
 	}
