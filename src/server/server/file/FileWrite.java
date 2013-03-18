@@ -32,7 +32,8 @@ public class FileWrite {
 			try {
 				String file = JServer.rootDir + "config";
 				String[] settings = {
-						"Port: " + JServer.serverPort, 
+						"Port: " + JServer.serverPort,
+						"Server Name: " + JServer.serverName,
 						};
 				
 				FileClear.clearConfig();

@@ -10,6 +10,7 @@ import server.gui.GUI;
 import server.gui.PopupManager;
 import server.network.GetIP;
 import server.network.Listen;
+import server.network.UpdateStatus;
 
 public class JServer {
 	public static Boolean debug = false;
@@ -19,8 +20,8 @@ public class JServer {
 	
 	public static int serverPort = 1337;
 	public static String serverIP = GetIP.ExtIP();
+	public static String serverName = "Default Name";
     public static String database = "jchat.ted80.net";
-    public static String serverName = GetIP.IntIP(true);
 	
 	public static void main(String[] args) {
 		// Get and handle Command line arguments
@@ -52,6 +53,8 @@ public class JServer {
 		}
 		
 		// Start listening
+		GUI.Append("Attempting to start services..");
+		new UpdateStatus();
 		new Listen();
 	}
 	

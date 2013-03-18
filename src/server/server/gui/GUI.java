@@ -28,8 +28,8 @@ public class GUI extends JFrame implements ActionListener {
 	public static JTextPane txtArea;
 	private JPanel panel;
 	
-	private JLabel olbl1, ilbl1, ilbl2;
-	private JTextField txtField, otxtField1, itxtField1, itxtField2;
+	private JLabel olbl1, olbl2, ilbl1, ilbl2;
+	private JTextField txtField, otxtField1, otxtField2, itxtField1, itxtField2;
 	private JButton btn1, btn2, obtn1;
 	
 	private Boolean configToggled = false;
@@ -92,7 +92,9 @@ public class GUI extends JFrame implements ActionListener {
 		setSize(500 + 16, 450 + 19);
 		
 		olbl1 = new JLabel();
+		olbl2 = new JLabel();
 		otxtField1 = new JTextField();
+		otxtField2 = new JTextField();
 		obtn1 = new JButton();
 		
 		ilbl1 = new JLabel();
@@ -102,31 +104,37 @@ public class GUI extends JFrame implements ActionListener {
 		
 		olbl1.setText("Port:");
 		olbl1.setBounds(360, 5, 145 , 10);
-		
 		otxtField1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		otxtField1.setBounds(360, 18, 145, 20);
 		otxtField1.setText(Integer.toString(JServer.serverPort));
 		
-		ilbl1.setText("External IP:");
-		ilbl1.setBounds(360, 38, 145, 20);
-		ilbl2.setText("Local IP:");
-		ilbl2.setBounds(360, 75, 145, 20);
+		olbl2.setText("Server Name:");
+		olbl2.setBounds(360, 41, 145 , 10);
+		otxtField2.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		otxtField2.setBounds(360, 54, 145, 20);
+		otxtField2.setText(JServer.serverName);
 		
+		ilbl1.setText("External IP:");
+		ilbl1.setBounds(360, 73, 145, 20);
 		itxtField1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		itxtField1.setBounds(360, 56, 145, 20);
-		itxtField1.setText(GetIP.ExtIP());
+		itxtField1.setBounds(360, 91, 145, 20);
+		itxtField1.setText(JServer.serverIP);
 		itxtField1.setEditable(false);
 		
+		ilbl2.setText("Local IP:");
+		ilbl2.setBounds(360, 111, 145, 20);
 		itxtField2.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		itxtField2.setBounds(360, 93, 145, 20);
-		itxtField2.setText(GetIP.IntIP(false));
+		itxtField2.setBounds(360, 128, 145, 20);
+		itxtField2.setText(GetIP.IntIP());
 		itxtField2.setEditable(false);
 		
 		obtn1.setText("Save");
 		obtn1.setBounds(435, 415, 70, 20);
 		
 		panel.add(olbl1);
+		panel.add(olbl2);
 		panel.add(otxtField1);
+		panel.add(otxtField2);
 		panel.add(obtn1);
 		panel.add(ilbl1);
 		panel.add(ilbl2);
@@ -202,6 +210,7 @@ public class GUI extends JFrame implements ActionListener {
 		if (btn == "Save") {
 			if (!JServer.debug) {
 				if (Integer.parseInt(otxtField1.getText()) >= 1 && Integer.parseInt(otxtField1.getText()) <= 65535) JServer.serverPort = Integer.parseInt(otxtField1.getText());
+				JServer.serverName = otxtField2.getText();
 				
 				if (!FileWrite.WriteConfig()) {
 					PopupManager.GiveWarning("Could not save configuration");

@@ -38,6 +38,7 @@ public class FileRead {
 			}
 			
 			if (str[0][0].equals("Port")) JServer.serverPort = Integer.parseInt(str[0][1]);
+			if (str[1][0].equals("Server Name")) JServer.serverName = str[1][1];
 			
 			return true;
 		} catch (IOException e) {
