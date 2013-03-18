@@ -8,14 +8,14 @@ import java.net.URL;
 
 public class DataServer 
 {
+	private URL url = null;
+	private BufferedReader in = null;
+	
 	public String sendDataWithReturn(String data)
 	{
-		URL url = null;
-		BufferedReader in = null;
-		String returnINFO = "";
-
 		try 
 		{ 
+			String returnINFO = "";
 			url = new URL(data); 
 			in = new BufferedReader(new InputStreamReader(url.openStream())); 
 			String inputLine; 
@@ -29,14 +29,11 @@ public class DataServer
 		catch (IOException e) 
 		{ System.out.println("Cannot read from server"); }
 		
-		return returnINFO;
+		return "";
 	}
 	
 	public boolean sendData(String data)
 	{
-		URL url = null;
-		BufferedReader in = null;
-
 		try 
 		{ 
 			url = new URL(data); 

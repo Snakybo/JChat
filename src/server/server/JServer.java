@@ -17,6 +17,7 @@ public class JServer {
 	public static final String rootDir = getRoot() + "\\server\\";
 	
 	public static int serverPort = 1337;
+    public static String Database = "jchat.ted80.net";
 	
 	public static void main(String[] args) {
 		// Get and handle Command line arguments
