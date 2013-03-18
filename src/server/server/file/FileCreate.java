@@ -47,6 +47,7 @@ public class FileCreate {
 			if (!file.mkdir()) return false;
 			return true;
 		} catch(Exception e) {
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -67,6 +68,7 @@ public class FileCreate {
 				return false;
 			}
 		} catch (IOException e) {
+			e.printStackTrace();
 			return false;
 		}
 	}

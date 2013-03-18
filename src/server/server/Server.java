@@ -1,6 +1,5 @@
 package server;
 import java.io.BufferedReader;
-
 import java.io.File;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -13,8 +12,6 @@ import server.file.FileCreate;
 import server.file.FileRead;
 import server.file.FileWrite;
 import server.gui.GUI;
-import server.network.Update;
-import server.network.receive.CreateServer;
 
 public class Server {
 	public static Boolean debug = false;
@@ -37,13 +34,6 @@ public class Server {
 		new GUI();
 		GUI.Append("Starting server on: " + GetIP() + ":" + serverPort);
 		
-		// Check for updates
-		GUI.Append("Checking for updates..");
-		if (Update.CheckUpdate()) {
-			GUI.Append("  - Updates found! Updating server..");
-			Update.RunUpdate();
-		}
-		
 		// Handle files
 		if (!debug) {
 			GUI.Append("Checking for server files..");
@@ -59,10 +49,6 @@ public class Server {
 		} else {
 			GUI.Append("Running in debug mode!");
 		}
-
-		// Start listening for messages
-		GUI.Append("Starting Server services..");
-		new CreateServer();
 	}
 	
 	// Returns the root directory of the JAR file
