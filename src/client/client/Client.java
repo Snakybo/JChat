@@ -18,7 +18,7 @@ public class Client
     public static int ClientID = 1;
     public static String ClientName = "client_name";
     public static String ClientPass = "client_pass";
-    public static String ServerIP = "localhost";
+    public static String ServerIP = "172.17.53.4";
     public static int ServerPort = 1337;
  
     public Client()

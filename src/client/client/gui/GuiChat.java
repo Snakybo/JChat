@@ -24,13 +24,11 @@ public class GuiChat extends JPanel
 	private JButton chatSettings, chatLogout, chatSend;
 	private JTextField chatnew;
 	
-	private Network connection = new Network();
 	private NetworkMessage message = new NetworkMessage();
 	private NetworkCommand command = new NetworkCommand();
 	
 	public GuiChat()
 	{
-		connection.openConnection(Client.ServerIP, Client.ServerPort);
 		setLayout(null); 
 	}
 	

@@ -7,6 +7,7 @@ import jexxus.common.Connection;
 import jexxus.common.ConnectionListener;
 import jexxus.common.Delivery;
 import jexxus.server.ServerConnection;
+import client.Client;
 import client.gui.GuiChat;
 
 public class Network
@@ -14,30 +15,17 @@ public class Network
 	public String[][] translatechars = {{"#","[n]"},{":","[d]"}};
 	public ClientConnection conection;
 	
-	public void openConnection(String ip, int port)
-	{
-		conection = new ClientConnection(new clientListener(), ip, port, false);
-		try
-		{
-			conection.connect();
-		}
-		catch(Exception exception)
-		{ System.out.println("Connection to server failed"); }
-	}
-
-	public void closeConnection()
+	public void sendInfoToServer(String info)
 	{
 		try 
 		{ 
+			conection = new ClientConnection(new clientListener(), Client.ServerIP, Client.ServerPort, false);
+			conection.connect();
+			conection.send(info.getBytes(), Delivery.RELIABLE);
 			conection.close();
 		}
 		catch(Exception exception)
-		{ System.out.println("Closing conection failed"); }
-	}
-	
-	public void sendInfoToServer(String info)
-	{
-		conection.send(info.getBytes(), Delivery.RELIABLE);
+		{ System.out.println("Message cannot be send :("); }
 	}
 	
 	public class clientListener implements ConnectionListener

@@ -8,7 +8,7 @@ public class NetworkMessage extends Network
 	public void SendClientMessage(String name, String pass, String message)
 	{
 		String info = "";
-		info = "message#" + name + "#" + pass + "#" + translate(message);
+		info = "message#" + name + "#" + "client" + "#" + translate(message);
 		sendInfoToServer(info);
 		
 		Calendar calendar = Calendar.getInstance();
