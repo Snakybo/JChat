@@ -4,11 +4,11 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import server.Server;
+import server.JServer;
 
 public class FileWrite {
 	public static void WriteHistory(String t, String s, String msg) {		
-		if (!Server.debug) {
+		if (!JServer.debug) {
 			try {
 				String time = "[" + t + "] " ;
 				String sender = s + ": ";
@@ -26,12 +26,12 @@ public class FileWrite {
 	}
 	
 	public static boolean WriteConfig() {
-		if (!Server.debug) {
+		if (!JServer.debug) {
 			try {
-				String file = Server.rootDir + "config";
+				String file = JServer.rootDir + "config";
 				String[] settings = {
-						"Port: " + Server.serverPort, 
-						"Threads: " + Server.numThreads
+						"Port: " + JServer.serverPort, 
+						"Threads: " + JServer.numThreads
 						};
 				
 				//FileClear.clearConfig();

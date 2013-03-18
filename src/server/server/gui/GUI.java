@@ -17,7 +17,7 @@ import javax.swing.text.StyledDocument;
 
 import server.file.FileWrite;
 
-import server.Server;
+import server.JServer;
 
 public class GUI extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 2941318999657277463L;
@@ -36,7 +36,7 @@ public class GUI extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(350 + 16, 450 + 19);
 		setLocationRelativeTo(null);
-		setTitle("JChat - Server " + Server.version);
+		setTitle("JChat - Server " + JServer.version);
 		setResizable(false);
 		
 		// Create content
@@ -159,9 +159,9 @@ public class GUI extends JFrame implements ActionListener {
 		
 		if (btn == "Save") {
 			if (!FileWrite.WriteConfig()) {
-				Server.GiveWarning("Could not save configuration");
+				JServer.GiveWarning("Could not save configuration");
 			} else {
-				Server.CloseWithMessage("Configuration saved. Closing server");
+				JServer.CloseWithMessage("Configuration saved. Closing server");
 			}
 		}
 	}

@@ -13,7 +13,7 @@ import server.file.FileRead;
 import server.file.FileWrite;
 import server.gui.GUI;
 
-public class Server {
+public class JServer {
 	public static Boolean debug = false;
 	
 	public static final String version = "1.0";

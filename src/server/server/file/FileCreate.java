@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import server.Server;
+import server.JServer;
 
 public class FileCreate {
 	public static String[] files = {"history", "config", "users", "ops"};
@@ -13,14 +13,14 @@ public class FileCreate {
 	
 	public static Boolean Check() {
 		// Folder
-		File folder = new File(Server.rootDir);
+		File folder = new File(JServer.rootDir);
 		if (!folder.exists()) {
 			return false;	
 		}
 		
 		// Files
 		for (int i = 0; i < files.length; i++) {
-			File file = new File(Server.rootDir + files[i]);
+			File file = new File(JServer.rootDir + files[i]);
 			if (!file.exists()) {
 				return false;
 			}
@@ -43,7 +43,7 @@ public class FileCreate {
 	// Create a folder
 	private static boolean CreateFolder(String f) {
 		try {
-			File file = new File(Server.rootDir);
+			File file = new File(JServer.rootDir);
 			if (!file.mkdir()) return false;
 			return true;
 		} catch(Exception e) {
@@ -55,7 +55,7 @@ public class FileCreate {
 	// Create a file
 	private static boolean CreateFile(String f) {
 		try {
-			File file = new File(Server.rootDir + f);
+			File file = new File(JServer.rootDir + f);
 			if (file.createNewFile()) {
 				FileWriter fWriter = new FileWriter(file);
 				BufferedWriter bWriter = new BufferedWriter(fWriter);

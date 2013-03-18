@@ -4,17 +4,17 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import server.Server;
+import server.JServer;
 
 public class FileRead {
 	public static void Read() {
-		if (!Server.debug) {
+		if (!JServer.debug) {
 			ReadFile("history");
 		}
 	}
 	
 	public static void ReadFile(String f) {
-		String file = Server.rootDir + f;
+		String file = JServer.rootDir + f;
 		String cLine;
 		
 		try (BufferedReader bReader = new BufferedReader(new FileReader(file))) {
