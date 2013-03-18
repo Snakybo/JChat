@@ -18,7 +18,7 @@ import server.network.receive.CreateServer;
 public class Server {
 	public static Boolean debug = false;
 	
-	public static final String version = "1.0.0";
+	public static final String version = "1.0";
 	public static final String rootDir = getRoot() + "\\server\\";
 	
 	public static int serverPort = 1337;
