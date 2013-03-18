@@ -1,10 +1,10 @@
-package client.sender;
+package client.network;
 
 import java.util.Calendar;
 
 import client.gui.GuiChat;
 
-public class SendMessage extends Send
+public class NetworkMessage extends Network
 {
 	
 	public String[][] translatechars = {{"#","[n]"},{":","[d]"}};

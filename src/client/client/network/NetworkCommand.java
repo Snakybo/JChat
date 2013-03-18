@@ -1,8 +1,8 @@
-package client.sender;
+package client.network;
 
 import client.gui.GuiChat;
 
-public class SendCommand extends Send
+public class NetworkCommand extends Network
 {
 	public String[][] cmds = {
 			{"CMD_CLEAN","c","clear","clearchat","cleanchat","cls","clean"},

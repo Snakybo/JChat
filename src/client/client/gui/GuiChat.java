@@ -9,7 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import client.sender.*;
+
+import client.network.*;
 import client.Client;
 
 public class GuiChat extends JPanel
@@ -23,9 +24,9 @@ public class GuiChat extends JPanel
 	private JButton chatSettings, chatLogout, chatSend;
 	private JTextField chatnew;
 	
-	private Send connection = new Send();
-	private SendMessage message = new SendMessage();
-	private SendCommand command = new SendCommand();
+	private Network connection = new Network();
+	private NetworkMessage message = new NetworkMessage();
+	private NetworkCommand command = new NetworkCommand();
 	
 	public GuiChat()
 	{
