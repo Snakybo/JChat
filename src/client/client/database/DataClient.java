@@ -17,28 +17,17 @@ public class DataClient
 		try 
 		{ 
 			url = new URL(data); 
-		} 
-		catch (MalformedURLException e) 
-		{ 
-		}
-		try 
-		{ 
 			in = new BufferedReader(new InputStreamReader(url.openStream())); 
-		} 
-		catch (IOException e) 
-		{ 
-		}
-		try 
-		{ 
 			String inputLine; 
 			while ((inputLine = in.readLine()) != null)  
 			{
 				returnINFO += inputLine;
 			}  
 		} 
+		catch (MalformedURLException e) 
+		{ System.out.println("Cannot connect to server"); }
 		catch (IOException e) 
-		{ 
-		}	
+		{ System.out.println("Cannot read from server"); }
 
 		return returnINFO;
 	}
