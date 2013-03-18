@@ -1,11 +1,14 @@
 package server.database;
 
+import server.JServer;
+
 public class DataServerServerlist extends DataServer
 {
 	public void UpdateServer()
 	{
-		boolean connection = sendData("http://jchat.ted80.net/?type=SERVER_UPDATE&name=SERVERNAME&data=SERVERIP");
 		
+		
+		boolean connection = sendData("http://" + JServer.database + "/?type=SERVER_UPDATE&name=" + JServer.serverName + "&data=" + JServer.serverIP);
 		if(connection == false)
 		{
 			//database is down

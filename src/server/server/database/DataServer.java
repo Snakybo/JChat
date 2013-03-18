@@ -23,6 +23,7 @@ public class DataServer
 			{
 				returnINFO += inputLine;
 			}  
+			return returnINFO;
 		} 
 		catch (MalformedURLException e) 
 		{ System.out.println("Cannot connect to server"); }
