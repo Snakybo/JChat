@@ -20,6 +20,7 @@ import javax.swing.text.StyledDocument;
 
 import server.JServer;
 import server.file.FileWrite;
+import server.network.GetIP;
 
 public class GUI extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 2941318999657277463L;
@@ -113,12 +114,12 @@ public class GUI extends JFrame implements ActionListener {
 		
 		itxtField1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		itxtField1.setBounds(360, 56, 145, 20);
-		itxtField1.setText(JServer.GetIP());
+		itxtField1.setText(GetIP.ExtIP());
 		itxtField1.setEditable(false);
 		
 		itxtField2.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		itxtField2.setBounds(360, 93, 145, 20);
-		itxtField2.setText(JServer.GetLocalIP());
+		itxtField2.setText(GetIP.IntIP());
 		itxtField2.setEditable(false);
 		
 		obtn1.setText("Save");
@@ -203,14 +204,14 @@ public class GUI extends JFrame implements ActionListener {
 				if (Integer.parseInt(otxtField1.getText()) >= 1 && Integer.parseInt(otxtField1.getText()) <= 65535) JServer.serverPort = Integer.parseInt(otxtField1.getText());
 				
 				if (!FileWrite.WriteConfig()) {
-					JServer.GiveWarning("Could not save configuration");
+					PopupManager.GiveWarning("Could not save configuration");
 				} else {
-					if (JServer.AskClose("Server settings saved, close server?", "Settings saved") == 0) {
+					if (PopupManager.AskClose("Server settings saved, close server?", "Settings saved") == 0) {
 						System.exit(0);
 					}
 				}
 			} else {
-				JServer.GiveWarning("Can not save while in debug mode");
+				PopupManager.GiveWarning("Can not save while in debug mode");
 			}
 		}
 	}

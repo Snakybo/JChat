@@ -15,7 +15,7 @@ public class Listen {
 		try {
 			server = new Server(new serverListen(), JServer.serverPort, false);
 			server.startServer();
-			GUI.Append("Server started on: " + JServer.GetIP() + ":" + JServer.serverPort);
+			GUI.Append("Server started on: " + GetIP.ExtIP() + ":" + JServer.serverPort);
 		} catch (Exception e) {
 			GUI.Append("Port " + JServer.serverPort + " already in use!");
 		}
