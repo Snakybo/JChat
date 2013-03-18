@@ -8,7 +8,7 @@ import java.net.URL;
 
 public class DataServer 
 {
-	public String sendData(String data)
+	public String sendDataWithReturn(String data)
 	{
 		URL url = null;
 		BufferedReader in = null;
@@ -28,7 +28,26 @@ public class DataServer
 		{ System.out.println("Cannot connect to server"); }
 		catch (IOException e) 
 		{ System.out.println("Cannot read from server"); }
-
+		
 		return returnINFO;
+	}
+	
+	public boolean sendData(String data)
+	{
+		URL url = null;
+		BufferedReader in = null;
+
+		try 
+		{ 
+			url = new URL(data); 
+			in = new BufferedReader(new InputStreamReader(url.openStream())); 
+			return true;
+		} 
+		catch (MalformedURLException e) 
+		{ System.out.println("Cannot connect to server"); }
+		catch (IOException e) 
+		{ System.out.println("Cannot read from server"); }
+		
+		return false;
 	}
 }
