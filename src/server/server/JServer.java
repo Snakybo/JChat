@@ -8,7 +8,6 @@ import server.file.FileRead;
 import server.file.FileWrite;
 import server.gui.GUI;
 import server.gui.PopupManager;
-import server.network.GetIP;
 import server.network.Listen;
 
 public class JServer {
@@ -29,7 +28,7 @@ public class JServer {
 
 		// Create main GUI
 		new GUI();
-		GUI.Append("Starting server on: " + GetIP.ExtIP() + ":" + serverPort);
+		GUI.Append("Starting server on port: " + serverPort);
 		
 		// Handle files
 		if (!debug) {
@@ -49,7 +48,6 @@ public class JServer {
 		}
 		
 		// Start listening
-		GUI.Append("Starting server services");
 		new Listen();
 	}
 	
