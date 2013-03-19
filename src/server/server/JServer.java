@@ -14,7 +14,8 @@ import server.network.Listen;
 import server.network.UpdateStatus;
 
 public class JServer {
-	public static Boolean debug = false;
+	public static boolean debug = false;
+	public static boolean offline = false;
 	
 	public static final String version = "1.0";
 	public static final String rootDir = getRoot() + "\\server\\";
@@ -23,12 +24,15 @@ public class JServer {
 	public static String serverIP = GetIP.ExtIP();
 	public static String serverName = "Default Name";
     public static String database = "jchat.ted80.net";
+    
+    private static boolean defName = false;
 	
 	public static void main(String[] args) {
 		// Get and handle Command line arguments
 		if (args.length > 0) {
 			for (int i = 0; i < args.length; i++) {
 				if (args[i].equals("debug")) debug = true;
+				if (args[i].equals("offline")) offline = true;;
 			}
 		}
 
@@ -53,11 +57,22 @@ public class JServer {
 			GUI.Append("Running in debug mode!");
 		}
 		
+		if (serverName.equals("Default Name")) defName = true;
+		
 		// Start listening
-		GUI.Append("Attempting to start services..");
-		new DataServerServerlist().UpdateServer();
-		new UpdateStatus();
-		new Listen();
+		if (!offline) {
+			//if (!defName) {
+				GUI.Append("Attempting to start services..");
+				new DataServerServerlist().UpdateServer();
+				new UpdateStatus();
+				new Listen();
+			//} else { 
+			//	PopupManager.GiveWarning("Server name can't be 'Default Name'");
+			//	GUI.Append("Failed to start server");
+			//}
+		} else {
+			GUI.Append("Running in offline mode!");
+		}
 	}
 	
 	// Returns the root directory of the JAR file

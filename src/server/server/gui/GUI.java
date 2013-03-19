@@ -209,15 +209,19 @@ public class GUI extends JFrame implements ActionListener {
 		
 		if (btn == "Save") {
 			if (!JServer.debug) {
-				if (Integer.parseInt(otxtField1.getText()) >= 1 && Integer.parseInt(otxtField1.getText()) <= 65535) JServer.serverPort = Integer.parseInt(otxtField1.getText());
-				JServer.serverName = otxtField2.getText();
-				
-				if (!FileWrite.WriteConfig()) {
-					PopupManager.GiveWarning("Could not save configuration");
-				} else {
-					if (PopupManager.AskClose("Server settings saved, close server?", "Settings saved") == 0) {
-						System.exit(0);
+				if (Integer.parseInt(otxtField1.getText()) >= 1 && Integer.parseInt(otxtField1.getText()) <= 65535) {
+					JServer.serverPort = Integer.parseInt(otxtField1.getText());
+					JServer.serverName = otxtField2.getText();
+					
+					if (!FileWrite.WriteConfig()) {
+						PopupManager.GiveWarning("Could not save configuration");
+					} else {
+						if (PopupManager.AskClose("Server settings saved, close server?", "Settings saved") == 0) {
+							System.exit(0);
+						}
 					}
+				} else {
+					PopupManager.GiveWarning("Could not save configuration");
 				}
 			} else {
 				PopupManager.GiveWarning("Can not save while in debug mode");
