@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-//import client.database.*;
+import client.database.*;
 import client.network.*;
 import client.Client;
 
@@ -27,11 +27,19 @@ public class GuiChat extends JPanel
 	
 	private NetworkMessage message = new NetworkMessage();
 	private NetworkCommand command = new NetworkCommand();
-	//private DataClientServerlist serverlist = new DataClientServerlist();
+	private DataClientServerlist serverlist = new DataClientServerlist();
 	
 	public GuiChat()
 	{
 		setLayout(null); 
+		String[][] list = serverlist.GetServerList();
+		for(int i = 0; i < list.length; i++)
+		{
+			if(list[i][1] != null)
+			{
+				System.out.println("name:" + list[i][0] + " ip:" + list[i][1] + " users:" + list[i][2] +  " time:" + list[i][3]);
+			}
+		}
 	}
 	
 	public void guiChatCreate(int width, int height)

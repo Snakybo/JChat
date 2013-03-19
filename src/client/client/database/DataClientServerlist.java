@@ -12,7 +12,7 @@ public class DataClientServerlist extends DataClient
 	
 	public String[][] GetServerList()
 	{
-		String[][] newlist = new String[50][3];
+		String[][] newlist = new String[50][4];
 		String info = sendData("http://" + Client.Database + "/?type=CLIENT_UPDATE");
 		
 		String[] data = info.split("&");
@@ -21,9 +21,10 @@ public class DataClientServerlist extends DataClient
 			if(data[i] != null)
 			{
 				String[] lineinfo = data[i].split("#");
-				newlist[i][0] = Translate(lineinfo[i]); //name
-				newlist[i][1] = lineinfo[i]; //ip
-				newlist[i][2] = lineinfo[i]; //users
+				newlist[i][0] = Translate(lineinfo[0]); //name
+				newlist[i][1] = lineinfo[1]; //ip
+				newlist[i][2] = lineinfo[2]; //users
+				newlist[i][3] = lineinfo[3]; //time
 			}
 		}
 		
