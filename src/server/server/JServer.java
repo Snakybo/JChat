@@ -59,7 +59,7 @@ public class JServer {
 			GUI.Append("Running in debug mode!");
 		}
 		
-		if (serverName.equals("Default Name")) defName = true;
+		//if (serverName.equals("Default Name")) defName = true;
 		
 		// Start listening
 		if (!offline) {
