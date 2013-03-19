@@ -27,7 +27,7 @@ public class JServer {
     public static int serverMaxusers = 100;
     public static int serverUsers = 0;
     
-    //private static boolean defName = false;
+    private static boolean defName = false;
 	
 	public static void main(String[] args) {
 		// Get and handle Command line arguments
@@ -59,19 +59,22 @@ public class JServer {
 			GUI.Append("Running in debug mode!");
 		}
 		
-		//if (serverName.equals("Default Name")) defName = true;
+		if (serverName.equals("Default Name")) defName = true;
 		
 		// Start listening
 		if (!offline) {
-			//if (!defName) {
+			if (!defName) {
 				GUI.Append("Attempting to start services..");
 				new DataServerServerlist().UpdateServer();
 				new UpdateStatus();
 				new Listen();
-			//} else { 
-			//	PopupManager.GiveWarning("Server name can't be 'Default Name'");
-			//	GUI.Append("Failed to start server");
-			//}
+			} else { 
+				if (!debug) {
+					String s = PopupManager.ShowInput("Server Name:", "Server Name");
+					serverName = s;
+					if (!FileWrite.WriteConfig()) PopupManager.CloseWithError("Could not write to files.");
+				}
+			}
 		} else {
 			GUI.Append("Running in offline mode!");
 		}

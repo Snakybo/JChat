@@ -30,4 +30,14 @@ public class PopupManager {
 			return 1;
 		}
 	}
+	
+	// Input dialog
+	public static String ShowInput(String inp, String inpT) {
+		String s = (String)JOptionPane.showInputDialog(null, inp, inpT, JOptionPane.PLAIN_MESSAGE);
+		if (s == null || s.length() <= 0) {
+			GiveWarning("Server name invalid!");
+			ShowInput(inp, inpT);
+		}
+		return s;
+	}
 }

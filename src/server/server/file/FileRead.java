@@ -27,7 +27,7 @@ public class FileRead {
 	public static boolean ReadConfig() {
 		String file = JServer.rootDir + "config";
 		String cLine;
-		String[][] str = new String[2][2];
+		String[][] str = new String[3][2];
 		
 		try (BufferedReader bReader = new BufferedReader(new FileReader(file))) {
 			int i = 0;
