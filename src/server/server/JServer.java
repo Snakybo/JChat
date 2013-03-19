@@ -27,7 +27,7 @@ public class JServer {
     public static int serverMaxusers = 100;
     public static int serverUsers = 0;
     
-    private static boolean defName = false;
+    //private static boolean defName = false;
 	
 	public static void main(String[] args) {
 		// Get and handle Command line arguments
@@ -63,15 +63,15 @@ public class JServer {
 		
 		// Start listening
 		if (!offline) {
-			if (!defName) {
+			//if (!defName) {
 				GUI.Append("Attempting to start services..");
 				new DataServerServerlist().UpdateServer();
 				new UpdateStatus();
 				new Listen();
-			} else { 
-				PopupManager.GiveWarning("Server name can't be 'Default Name'");
-				GUI.Append("Failed to start server");
-			}
+			//} else { 
+			//	PopupManager.GiveWarning("Server name can't be 'Default Name'");
+			//	GUI.Append("Failed to start server");
+			//}
 		} else {
 			GUI.Append("Running in offline mode!");
 		}
