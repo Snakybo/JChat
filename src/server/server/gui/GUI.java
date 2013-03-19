@@ -120,7 +120,7 @@ public class GUI extends JFrame implements ActionListener {
 		olbl3.setBounds(360, ((5*5) + (3*20)), 145 , 10);
 		otxtField3.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		otxtField3.setBounds(360, ((4*20) + (4*5) - 2), 145, 20);
-		//otxtField3.setText(JServer.maxUsers);
+		otxtField3.setText(Integer.toString(JServer.serverMaxusers));
 		
 		ilbl1.setText("External IP:");
 		ilbl1.setBounds(360, ((4*5) + (5*20)), 145, 20);
@@ -224,15 +224,20 @@ public class GUI extends JFrame implements ActionListener {
 		if (btn == "Save") {
 			if (!JServer.debug) {
 				if (Integer.parseInt(otxtField1.getText()) >= 1 && Integer.parseInt(otxtField1.getText()) <= 65535) {
-					JServer.serverPort = Integer.parseInt(otxtField1.getText());
-					JServer.serverName = otxtField2.getText();
-					
-					if (!FileWrite.WriteConfig()) {
-						PopupManager.GiveWarning("Could not save configuration");
-					} else {
-						if (PopupManager.AskClose("Server settings saved, close server?", "Settings saved") == 0) {
-							System.exit(0);
+					if (Integer.parseInt(otxtField3.getText()) > 0) {
+						JServer.serverPort = Integer.parseInt(otxtField1.getText());
+						JServer.serverName = otxtField2.getText();
+						JServer.serverMaxusers = Integer.parseInt(otxtField3.getText());
+						
+						if (!FileWrite.WriteConfig()) {
+							PopupManager.GiveWarning("Could not save configuration");
+						} else {
+							if (PopupManager.AskClose("Server settings saved, close server?", "Settings saved") == 0) {
+								System.exit(0);
+							}
 						}
+					} else {
+						PopupManager.GiveWarning("Could not save configuration");
 					}
 				} else {
 					PopupManager.GiveWarning("Could not save configuration");

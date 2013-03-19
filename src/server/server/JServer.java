@@ -24,7 +24,7 @@ public class JServer {
 	public static String serverIP = GetIP.ExtIP();
 	public static String serverName = "Default Name";
     public static String database = "jchat.ted80.net";
-    public static int serverMaxusers = 0;
+    public static int serverMaxusers = 100;
     public static int serverUsers = 0;
     
     private static boolean defName = false;

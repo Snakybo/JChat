@@ -34,6 +34,7 @@ public class FileWrite {
 				String[] settings = {
 						"Port: " + JServer.serverPort,
 						"Server Name: " + JServer.serverName,
+						"Max Users: " + JServer.serverMaxusers,
 						};
 				
 				FileClear.clearConfig();
