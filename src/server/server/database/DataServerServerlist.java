@@ -5,8 +5,6 @@ import server.JServer;
 public class DataServerServerlist extends DataServer
 {
 	public String[][] translatechars = {{" ","%20"},{"&","[a]"},{"#","[n]"}};
-	//private DataServerServerlist dataserverlist = new DataServerServerlist();
-	//dataserverlist.UpdateServer();
 	
 	public DataServerServerlist()
 	{

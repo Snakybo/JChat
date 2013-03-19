@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+//import client.database.*;
 import client.network.*;
 import client.Client;
 
@@ -26,6 +27,7 @@ public class GuiChat extends JPanel
 	
 	private NetworkMessage message = new NetworkMessage();
 	private NetworkCommand command = new NetworkCommand();
+	//private DataClientServerlist serverlist = new DataClientServerlist();
 	
 	public GuiChat()
 	{
