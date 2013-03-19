@@ -2,6 +2,7 @@ package server.network;
 
 import jexxus.common.Connection;
 import jexxus.common.ConnectionListener;
+import jexxus.common.Delivery;
 import jexxus.server.Server;
 import jexxus.server.ServerConnection;
 import server.JServer;
@@ -28,6 +29,7 @@ public class Listen {
 		public void receive(byte[] data, Connection from) {
 			String msg = new String(data);
 			String msgParts[] = msg.split("#");
+			from.send(data, Delivery.RELIABLE);
 			GUI.Append("[" + JServer.getTime() + "] " + msgParts[2] + ": " + msgParts[3]);
 			
 			if (!JServer.debug) {
