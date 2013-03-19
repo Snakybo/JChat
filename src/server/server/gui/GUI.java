@@ -28,8 +28,8 @@ public class GUI extends JFrame implements ActionListener {
 	public static JTextPane txtArea;
 	private JPanel panel;
 	
-	private JLabel olbl1, olbl2, ilbl1, ilbl2;
-	private JTextField txtField, otxtField1, otxtField2, itxtField1, itxtField2;
+	private JLabel olbl1, olbl2, olbl3, ilbl1, ilbl2;
+	private JTextField txtField, otxtField1, otxtField2, otxtField3, itxtField1, itxtField2;
 	private JButton btn1, btn2, obtn1;
 	
 	private Boolean configToggled = false;
@@ -93,8 +93,10 @@ public class GUI extends JFrame implements ActionListener {
 		
 		olbl1 = new JLabel();
 		olbl2 = new JLabel();
+		olbl3 = new JLabel();
 		otxtField1 = new JTextField();
 		otxtField2 = new JTextField();
+		otxtField3 = new JTextField();
 		obtn1 = new JButton();
 		
 		ilbl1 = new JLabel();
@@ -103,28 +105,34 @@ public class GUI extends JFrame implements ActionListener {
 		itxtField2 = new JTextField();
 		
 		olbl1.setText("Port:");
-		olbl1.setBounds(360, 5, 145 , 10);
+		olbl1.setBounds(360, (1*5), 145 , 10);
 		otxtField1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		otxtField1.setBounds(360, 18, 145, 20);
+		otxtField1.setBounds(360, (1*20 - 2), 145, 20);
 		otxtField1.setText(Integer.toString(JServer.serverPort));
 		
 		olbl2.setText("Server Name:");
-		olbl2.setBounds(360, 41, 145 , 10);
+		olbl2.setBounds(360, ((5*5) + (1*20)), 145 , 10);
 		otxtField2.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		otxtField2.setBounds(360, 54, 145, 20);
+		otxtField2.setBounds(360, ((2*20) + (4*5) - 2), 145, 20);
 		otxtField2.setText(JServer.serverName);
 		
+		olbl3.setText("Max Users");
+		olbl3.setBounds(360, ((5*5) + (3*20)), 145 , 10);
+		otxtField3.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		otxtField3.setBounds(360, ((4*20) + (4*5) - 2), 145, 20);
+		//otxtField3.setText(JServer.maxUsers);
+		
 		ilbl1.setText("External IP:");
-		ilbl1.setBounds(360, 73, 145, 20);
+		ilbl1.setBounds(360, ((4*5) + (5*20)), 145, 20);
 		itxtField1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		itxtField1.setBounds(360, 91, 145, 20);
+		itxtField1.setBounds(360, ((6*20) + (4*5) - 2), 145, 20);
 		itxtField1.setText(JServer.serverIP);
 		itxtField1.setEditable(false);
 		
 		ilbl2.setText("Local IP:");
-		ilbl2.setBounds(360, 111, 145, 20);
+		ilbl2.setBounds(360, ((4*5) + (7*20)), 145, 20);
 		itxtField2.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		itxtField2.setBounds(360, 128, 145, 20);
+		itxtField2.setBounds(360, ((8*20) + (4*5) - 2), 145, 20);
 		itxtField2.setText(GetIP.IntIP());
 		itxtField2.setEditable(false);
 		
@@ -133,8 +141,10 @@ public class GUI extends JFrame implements ActionListener {
 		
 		panel.add(olbl1);
 		panel.add(olbl2);
+		panel.add(olbl3);
 		panel.add(otxtField1);
 		panel.add(otxtField2);
+		panel.add(otxtField3);
 		panel.add(obtn1);
 		panel.add(ilbl1);
 		panel.add(ilbl2);
@@ -168,7 +178,11 @@ public class GUI extends JFrame implements ActionListener {
 	// Retract the options panel
 	public void Retract() {		
 		panel.remove(olbl1);
+		panel.remove(olbl2);
+		panel.remove(olbl3);
 		panel.remove(otxtField1);
+		panel.remove(otxtField2);
+		panel.remove(otxtField3);
 		panel.remove(obtn1);
 		panel.remove(ilbl1);
 		panel.remove(ilbl2);

@@ -63,15 +63,15 @@ public class JServer {
 		
 		// Start listening
 		if (!offline) {
-			//if (!defName) {
+			if (!defName) {
 				GUI.Append("Attempting to start services..");
 				new DataServerServerlist().UpdateServer();
 				new UpdateStatus();
 				new Listen();
-			//} else { 
-			//	PopupManager.GiveWarning("Server name can't be 'Default Name'");
-			//	GUI.Append("Failed to start server");
-			//}
+			} else { 
+				PopupManager.GiveWarning("Server name can't be 'Default Name'");
+				GUI.Append("Failed to start server");
+			}
 		} else {
 			GUI.Append("Running in offline mode!");
 		}
