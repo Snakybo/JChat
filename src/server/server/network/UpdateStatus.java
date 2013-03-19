@@ -3,7 +3,6 @@ package server.network;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import server.JServer;
 import server.database.DataServerServerlist;
 
 public class UpdateStatus {
@@ -16,7 +15,6 @@ public class UpdateStatus {
 		updateTimer.schedule(new TimerTask() {
 			@Override
 			public void run() {
-				System.out.println(JServer.getTime() + " - Updated");
 				dataserverlist.UpdateServer();
 			}
 		}, updateTime, updateTime);
