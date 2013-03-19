@@ -40,23 +40,23 @@ public class JServer {
 
 		// Create main GUI
 		new GUI();
-		GUI.Append("Starting server on port: " + serverPort);
+		GUI.Append("[" + getTime() + "] Starting server on port: " + serverPort);
 		
 		// Handle files
 		if (!debug) {
-			GUI.Append("Checking for server files..");
+			GUI.Append("[" + getTime() + "] Checking for server files..");
 			if (!FileCreate.Check()) {
-				GUI.Append("  - Files missing! Creating..");
+				GUI.Append("[" + getTime() + "]   - Files missing! Creating..");
 				if (!FileCreate.Create()) PopupManager.CloseWithError("Server could not create files.");
 				if (!FileWrite.WriteConfig()) PopupManager.CloseWithError("Could not write to files.");
-				GUI.Append("  - Files Created!");
+				GUI.Append("[" + getTime() + "]   - Files Created!");
 			} else {
-				GUI.Append("  - Files found.");
+				GUI.Append("[" + getTime() + "]   - Files found.");
 				FileRead.Read();
 				if (!FileRead.ReadConfig()) PopupManager.GiveWarning("Config file could not be read!");
 			}
 		} else {
-			GUI.Append("Running in debug mode!");
+			GUI.Append("[" + getTime() + "] Running in debug mode!");
 		}
 		
 		if (serverName.equals("Default Name")) defName = true;
@@ -64,20 +64,28 @@ public class JServer {
 		// Start listening
 		if (!offline) {
 			if (!defName) {
-				GUI.Append("Attempting to start services..");
-				new DataServerServerlist().UpdateServer();
-				new UpdateStatus();
-				new Listen();
+				startServer();
 			} else { 
 				if (!debug) {
 					String s = PopupManager.ShowInput("Server Name:", "Server Name");
 					serverName = s;
 					if (!FileWrite.WriteConfig()) PopupManager.CloseWithError("Could not write to files.");
+					startServer();
+				} else {
+					startServer();
 				}
 			}
 		} else {
-			GUI.Append("Running in offline mode!");
+			GUI.Append("[" + getTime() + "] Running in offline mode!");
 		}
+	}
+	
+	// Start the server services
+	private static void startServer() {
+		GUI.Append("[" + getTime() + "] Attempting to start services..");
+		new DataServerServerlist().UpdateServer();
+		new UpdateStatus();
+		new Listen();
 	}
 	
 	// Returns the root directory of the JAR file

@@ -21,6 +21,7 @@ import javax.swing.text.StyledDocument;
 import server.JServer;
 import server.file.FileWrite;
 import server.network.GetIP;
+import server.network.Send;
 
 public class GUI extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 2941318999657277463L;
@@ -56,7 +57,7 @@ public class GUI extends JFrame implements ActionListener {
 		txtArea.setBounds(5, 5, 350, 405);
 		txtArea.setContentType("text/html");
 		String font = txtArea.getFont().getFamily();
-		txtArea.setText("<html><body style=\"font-family: " + font + "\"");
+		txtArea.setText("<html><body style=\"font-family: " + font + "\">");
 		
 		txtField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		txtField.setBounds(5, 415, 200, 20);
@@ -81,6 +82,7 @@ public class GUI extends JFrame implements ActionListener {
             public void keyTyped(KeyEvent e) { }
             public void keyPressed(KeyEvent e) {
             	if(e.getKeyCode() == 10) {
+            		new Send(txtField.getText());
             		txtField.setText("");
             	}
             }
@@ -208,6 +210,7 @@ public class GUI extends JFrame implements ActionListener {
 		String btn = arg0.getActionCommand();
 		
 		if (btn == "Send") {
+			new Send(txtField.getText());
 			txtField.setText("");
 		}
 		

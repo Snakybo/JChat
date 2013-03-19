@@ -15,9 +15,9 @@ public class Listen {
 		try {
 			server = new Server(new serverListen(), JServer.serverPort, false);
 			server.startServer();
-			GUI.Append("Server started on: " + JServer.serverIP + ":" + JServer.serverPort);
+			GUI.Append("[" + JServer.getTime() + "] Server started on: " + JServer.serverIP + ":" + JServer.serverPort);
 		} catch (Exception e) {
-			GUI.Append("Port " + JServer.serverPort + " already in use!");
+			GUI.Append("[" + JServer.getTime() + "] Port " + JServer.serverPort + " already in use!");
 		}
 	}
 	
@@ -27,10 +27,7 @@ public class Listen {
 
 		public void receive(byte[] data, Connection from) {
 			String msg = new String(data);
-			
 			String msgParts[] = msg.split("#");
-			
-			
 			GUI.Append("[" + JServer.getTime() + "] " + msgParts[2] + ": " + msgParts[3]);
 			
 			if (!JServer.debug) {
