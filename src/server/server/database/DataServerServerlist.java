@@ -13,7 +13,7 @@ public class DataServerServerlist extends DataServer
 	public void UpdateServer()
 	{
 		String name = Translate(JServer.serverName);
-		boolean connection = sendData("http://" + JServer.database + "/?type=SERVER_UPDATE&name=" + name + "&data=" + JServer.serverIP + ":" + JServer.serverPort);
+		boolean connection = sendData("http://" + JServer.database + "/?type=SERVER_UPDATE&name=" + name + "&data=" + JServer.serverIP + ":" + JServer.serverPort + "&stat=" + JServer.serverUsers + ":" + JServer.serverMaxusers);
 		if(connection == false)
 		{
 			//database is down
