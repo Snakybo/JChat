@@ -1,14 +1,9 @@
 package client;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.Timer;
-
 import client.gui.*;
 
 public class Client
 {   
-	private Timer clienttick;
 	private int screenwidth = 803;
 	private int screenheight = 600;
 
@@ -26,20 +21,6 @@ public class Client
     {
 		gui = new Gui(screenwidth, screenheight, version);
 		gui.guiCreate(1);
-
-		clienttick = new Timer(1000, new ActionListener()  
-		{
-            public void actionPerformed(ActionEvent e)  
-            {
-            	tick();
-            }
-        });  
-		clienttick.start();
-    }
-    
-    public void tick()
-    {
-    	
     }
     
     public static void main(String args[]) 

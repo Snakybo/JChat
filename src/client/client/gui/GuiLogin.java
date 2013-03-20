@@ -1,6 +1,8 @@
 package client.gui;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -10,9 +12,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import client.Client;
-import client.database.DataClientLogin;
+//import client.database.DataClientLogin;
 import client.database.DataClientServerlist;
-import client.network.NetworkPing;
+//import client.network.NetworkPing;
 
 public class GuiLogin extends JPanel
 {
@@ -24,9 +26,9 @@ public class GuiLogin extends JPanel
 	private JButton loginbutton, registerbutton;
 	private JTextArea serverlistfield;
 	
-	private NetworkPing ping = new NetworkPing();
+	//private NetworkPing ping = new NetworkPing();
 	private DataClientServerlist serverlist = new DataClientServerlist();
-	private DataClientLogin login = new DataClientLogin();
+	//private DataClientLogin login = new DataClientLogin();
 
 	public GuiLogin()
 	{
@@ -63,6 +65,20 @@ public class GuiLogin extends JPanel
 		serverlistfield.setBounds((width / 2) + 10, (height / 2) - 205, 270, 375); 
 		textserverlist.setBounds((width / 2) + 100, (height / 2) - 230, 100, 20); 
 
+		loginbutton.addActionListener(new ActionListener() 
+		{
+            public void actionPerformed(ActionEvent e) 
+            {
+            	String[] serverpath = loginserver.getText().split(":");
+            	if(serverpath[0] != null && serverpath[1] != null)
+            	{
+                	Client.ServerIP = serverpath[0];
+                	Client.ServerPort = Integer.parseInt(serverpath[1]);
+                	//Client.guiSwitch(1, 3); 
+            	}
+            }
+		});		
+		
 		add(texttitle);
 		add(textname);
 		add(textpass);

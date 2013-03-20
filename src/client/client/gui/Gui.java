@@ -27,7 +27,8 @@ public class Gui extends JFrame
 		switch(id) 
 		{
 			case 1: { add(login); login.guiChatCreate(w, h); }
-			//case 1: { add(chat); chat.guiChatCreate(w, h); }
+			//case 2: { }
+			//case 3: { add(chat); chat.guiChatCreate(w, h); }
 		}
 		setVisible(true);
 	}
@@ -37,7 +38,8 @@ public class Gui extends JFrame
 		switch(id)
 		{
 			case 1: { remove(login); login.guiChatDestroy(); }
-			//case 1: { remove(chat); chat.guiChatDestroy(); }
+			//case 2: { }
+			//case 3: { remove(chat); chat.guiChatDestroy(); }
 		}
 		setVisible(false);
 	}
