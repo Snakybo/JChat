@@ -11,20 +11,28 @@ public class GetIP {
 	// Get the server's IP adress
 	public static String ExtIP() {
 		String ip = null;
-		try {
-			URL site = new URL("http://api.exip.org/?call=ip");
-			BufferedReader in = new BufferedReader(new InputStreamReader(site.openStream()));
-			ip = in.readLine();
-		} catch (Exception e) {
+		String[] mirrors = {
+			"http://api.exip.org/?call=ip",
+			"http://icanhazip.com/",
+			"http://api.exip.org/?call=ip",
+			"http://ifconfig.me/ip",
+			"http://ip.appspot.com/",
+		};
+		
+		for (int i = 0; i < mirrors.length; i++) {
 			try {
-				URL site = new URL("http://icanhazip.com/");
+				URL site = new URL(mirrors[i]);
 				BufferedReader in = new BufferedReader(new InputStreamReader(site.openStream()));
 				ip = in.readLine();
-			} catch (Exception ex) {
-				PopupManager.GiveWarning("External IP adress could not be resolved");
-				ip = "0.0.0.0";
-			}
+			} catch (Exception e) { }
+			if (ip != null) break;
 		}
+		
+		if (ip == null) {
+			PopupManager.GiveWarning("External IP adress could not be resolved");
+			ip = "0.0.0.0";
+		}
+		
 		return ip;
 	}
 	
