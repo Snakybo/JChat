@@ -12,4 +12,12 @@ public class User {
 	public static void unban() {
 		
 	}
+	
+	public static void op() {
+		
+	}
+	
+	public static void deop() {
+		
+	}
 }

@@ -14,6 +14,8 @@ public class Send {
 		{"CMD_UPDATE", "update", "u"},
 		{"CMD_PING", "ping"},
 		{"CMC_HELP", "help", "h"},
+		{"CMD_ADDOP", "op"},
+		{"CMD_DEOP", "deop"},
 	};
 	
 	public Send(String in) {
@@ -47,6 +49,8 @@ public class Send {
 		if (cmd == "CMD_UPDATE") Update.forceUpdate();
 		if (cmd == "CMD_PING") new DataServerPing();
 		if (cmd == "CMD_HELP") new JServerHelp();
+		if (cmd == "CMD_OP") User.op();
+		if (cmd == "CMD_DEOP") User.deop();
 	}
 	
 	private static void sendMessage(String msg) {
