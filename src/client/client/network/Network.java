@@ -28,6 +28,22 @@ public class Network
 		{ System.out.println("Message cannot be send :("); }
 	}
 	
+	public boolean pingToServer(String server, int port)
+	{
+		try 
+		{ 
+			conection = new ClientConnection(new clientListener(), server, port, false);
+			conection.connect();
+			conection.send("ping#0#0#0".getBytes(), Delivery.RELIABLE);
+			conection.close();
+			return true;
+		}
+		catch(Exception exception)
+		{ 
+			return false;
+		}
+	}
+	
 	public class clientListener implements ConnectionListener
 	{
 		public void connectionBroken(Connection broken, boolean forced) 
