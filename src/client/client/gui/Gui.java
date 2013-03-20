@@ -26,8 +26,8 @@ public class Gui extends JFrame
 	{
 		switch(id) 
 		{
-			case 1: {  add(login); login.guiChatCreate(w, h); }
-			//case 1: { add(chat); chat.guiChatCreate(w, h); }
+			//case 1: {  add(login); login.guiChatCreate(w, h); }
+			case 1: { add(chat); chat.guiChatCreate(w, h); }
 		}
 		setVisible(true);
 	}

@@ -1,6 +1,8 @@
 package server.network;
 
-import server.JServer;
+import server.JServerHelp;
+import server.database.DataServerPing;
+import server.file.FileClear;
 import server.gui.GUI;
 
 public class Send {
@@ -11,6 +13,7 @@ public class Send {
 		{"CMD_UNBAN", "unban"},
 		{"CMD_UPDATE", "update", "u"},
 		{"CMD_PING", "ping"},
+		{"CMC_HELP", "help", "h"},
 	};
 	
 	public Send(String in) {
@@ -33,14 +36,20 @@ public class Send {
 				}
 			}
 		}
-		if (!com) GUI.Append("[" + JServer.getTime() + "] No such command /" + cmd);
+		if (!com) GUI.Append("No such command /" + cmd);
 	}
 	
 	private static void runCommand(String cmd) {
-		System.out.println(cmd);
+		if (cmd == "CMD_CLEAR") FileClear.clearHistory();
+		if (cmd == "CMD_KICK") User.kick();
+		if (cmd == "CMD_BAN") User.ban();
+		if (cmd == "CMD_UNBAN") User.unban();
+		if (cmd == "CMD_UPDATE") Update.forceUpdate();
+		if (cmd == "CMD_PING") new DataServerPing();
+		if (cmd == "CMD_HELP") new JServerHelp();
 	}
 	
 	private static void sendMessage(String msg) {
-		GUI.Append("[" + JServer.getTime() + "] Server: " + msg);
+		GUI.Append("Server: " + msg);
 	}
 }

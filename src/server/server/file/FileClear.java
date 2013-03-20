@@ -8,6 +8,10 @@ import java.io.IOException;
 import server.JServer;
 
 public class FileClear {
+	public static boolean clearHistory() {
+		return true;
+	}
+	
 	public static void clearConfig() {
 		try {
 			File file = new File(JServer.rootDir + "config");

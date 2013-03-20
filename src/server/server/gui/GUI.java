@@ -199,7 +199,7 @@ public class GUI extends JFrame implements ActionListener {
 	public static void Append(String s) {
 		StyledDocument doc = txtArea.getStyledDocument();
 		try {
-			doc.insertString(doc.getLength()," " + s + "\n", null);
+			doc.insertString(doc.getLength()," " + "[" + JServer.getTime() + "] " + s + "\n", null);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

@@ -11,7 +11,7 @@ import server.gui.GUI;
 import server.gui.PopupManager;
 import server.network.GetIP;
 import server.network.Listen;
-import server.network.UpdateStatus;
+import server.network.Update;
 
 public class JServer {
 	public static boolean debug = false;
@@ -40,23 +40,23 @@ public class JServer {
 
 		// Create main GUI
 		new GUI();
-		GUI.Append("[" + getTime() + "] Starting server on port: " + serverPort);
+		GUI.Append("Starting server on port: " + serverPort);
 		
 		// Handle files
 		if (!debug) {
-			GUI.Append("[" + getTime() + "] Checking for server files..");
+			GUI.Append("Checking for server files..");
 			if (!FileCreate.Check()) {
 				GUI.Append("[" + getTime() + "]   - Files missing! Creating..");
 				if (!FileCreate.Create()) PopupManager.CloseWithError("Server could not create files.");
 				if (!FileWrite.WriteConfig()) PopupManager.CloseWithError("Could not write to files.");
-				GUI.Append("[" + getTime() + "]   - Files Created!");
+				GUI.Append("  - Files Created!");
 			} else {
-				GUI.Append("[" + getTime() + "]   - Files found.");
+				GUI.Append("  - Files found.");
 				FileRead.Read();
 				if (!FileRead.ReadConfig()) PopupManager.GiveWarning("Config file could not be read!");
 			}
 		} else {
-			GUI.Append("[" + getTime() + "] Running in debug mode!");
+			GUI.Append("Running in debug mode!");
 		}
 		
 		if (serverName.equals("Default Name")) defName = true;
@@ -76,15 +76,15 @@ public class JServer {
 				}
 			}
 		} else {
-			GUI.Append("[" + getTime() + "] Running in offline mode!");
+			GUI.Append("Running in offline mode!");
 		}
 	}
 	
 	// Start the server services
 	private static void startServer() {
-		GUI.Append("[" + getTime() + "] Attempting to start services..");
+		GUI.Append("Attempting to start services..");
 		new DataServerServerlist().UpdateServer();
-		new UpdateStatus();
+		Update.updateStatus();
 		new Listen();
 	}
 	

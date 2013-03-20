@@ -16,9 +16,9 @@ public class Listen {
 		try {
 			server = new Server(new serverListen(), JServer.serverPort, false);
 			server.startServer();
-			GUI.Append("[" + JServer.getTime() + "] Server started on: " + JServer.serverIP + ":" + JServer.serverPort);
+			GUI.Append("Server started on: " + JServer.serverIP + ":" + JServer.serverPort);
 		} catch (Exception e) {
-			GUI.Append("[" + JServer.getTime() + "] Port " + JServer.serverPort + " already in use!");
+			GUI.Append("Port " + JServer.serverPort + " already in use!");
 		}
 	}
 	
@@ -30,6 +30,7 @@ public class Listen {
 			String msg = new String(data);
 			String msgParts[] = msg.split("#");
 			from.send(data, Delivery.RELIABLE);
+			System.out.println(from.getBytesSent());
 			GUI.Append("[" + JServer.getTime() + "] " + msgParts[2] + ": " + msgParts[3]);
 			
 			if (!JServer.debug) {
