@@ -1,4 +1,4 @@
-package server.network;
+package server.network.user;
 
 public class User {
 	public static void kick() {
@@ -18,6 +18,14 @@ public class User {
 	}
 	
 	public static void deop() {
+		
+	}
+	
+	public static void banglob() {
+		
+	}
+	
+	public static void unbanglob() {
 		
 	}
 }

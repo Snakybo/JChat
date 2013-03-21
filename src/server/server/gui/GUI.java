@@ -26,7 +26,7 @@ import server.network.Send;
 public class GUI extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 2941318999657277463L;
 	
-	public static JTextPane txtArea;
+	private static JTextPane txtArea;
 	private JPanel panel;
 	
 	private JLabel olbl1, olbl2, olbl3, ilbl1, ilbl2;
@@ -49,15 +49,12 @@ public class GUI extends JFrame implements ActionListener {
 		txtField = new JTextField();
 		btn1 = new JButton();
 		btn2 = new JButton();
-		
+
 		panel.setLayout(null);
 		
 		txtArea.setEditable(false);
 		txtArea.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		txtArea.setBounds(5, 5, 350, 405);
-		txtArea.setContentType("text/html");
-		String font = txtArea.getFont().getFamily();
-		txtArea.setText("<html><body style=\"font-family: " + font + "\">");
 		
 		txtField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		txtField.setBounds(5, 415, 200, 20);
@@ -203,6 +200,11 @@ public class GUI extends JFrame implements ActionListener {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	// Clear the txtArea
+	public static void Clear() {
+		txtArea.setText("");
 	}
 
 	@Override

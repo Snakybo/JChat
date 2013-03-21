@@ -6,9 +6,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import server.JServer;
+import server.gui.GUI;
 
 public class FileClear {
 	public static void clearHistory() {
+		GUI.Append("clearHistory");
 		try {
 			File file = new File(JServer.rootDir + "history");
 			FileWriter fWriter = new FileWriter(file);
@@ -17,7 +19,7 @@ public class FileClear {
 			bWriter.newLine();
 			bWriter.flush();
 			bWriter.close();
-			
+			GUI.Clear();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -32,7 +34,6 @@ public class FileClear {
 			bWriter.newLine();
 			bWriter.flush();
 			bWriter.close();
-			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

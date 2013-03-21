@@ -12,6 +12,7 @@ public class GetIP {
 	public static String ExtIP() {
 		String ip = null;
 		String[] mirrors = {
+			"http://jchat.ted80.net/?type=IP",
 			"http://api.exip.org/?call=ip",
 			"http://icanhazip.com/",
 			"http://api.exip.org/?call=ip",

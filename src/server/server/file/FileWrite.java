@@ -4,17 +4,15 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import jexxus.common.Connection;
-
 import server.JServer;
 
 public class FileWrite {
-	public static void WriteHistory(String t, Connection s, String msg) {		
+	public static void WriteHistory(String t, String s, String msg) {		
 		if (!JServer.debug) {
 			try {
 				String time = "[" + t + "] " ;
 				String sender = s + ": ";
-				String file = FileCreate.files[0];
+				String file = JServer.rootDir + FileCreate.files[0];
 				
 				FileWriter fWriter = new FileWriter(file, true);
 				BufferedWriter bWriter = new BufferedWriter(fWriter);

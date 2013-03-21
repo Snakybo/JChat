@@ -30,11 +30,22 @@ public class Listen {
 			String msg = new String(data);
 			String msgParts[] = msg.split("#");
 			from.send(data, Delivery.RELIABLE);
-			System.out.println(from.getBytesSent());
-			GUI.Append("[" + JServer.getTime() + "] " + msgParts[2] + ": " + msgParts[3]);
+			
+			
+			if (msgParts[0].equals("command")) {
+				if (msgParts[4].equals("null")) {
+					Send.runCommand(msgParts[3]);
+				} else {
+					Send.runCommandWithPar(msgParts[3], msgParts[4]);
+				}
+
+				System.out.println(msgParts[3]);
+			} else if (msgParts[0].equals("message")) {
+				GUI.Append(msgParts[2] + ": " + msgParts[3]);
+			}
 			
 			if (!JServer.debug) {
-				FileWrite.WriteHistory(JServer.getTime(), from, new String(data));
+				FileWrite.WriteHistory(JServer.getTime(), msgParts[2], msgParts[3]);
 			}
 		}
 	}
