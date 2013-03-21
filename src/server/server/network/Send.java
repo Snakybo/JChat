@@ -16,7 +16,6 @@ public class Send {
 		{"CMD_BANGLOB", "banip"},
 		{"CMD_UNBANGLOB", "unbanip"},
 		{"CMD_UNBAN", "unban"},
-		{"CMD_UPDATE", "update", "u"},
 		{"CMD_PING", "ping"},
 		{"CMD_HELP", "help", "h"},
 		{"CMD_ADDOP", "op"},
@@ -60,7 +59,6 @@ public class Send {
 	
 	public static void runCommand(String cmd) {
 		if (!JServer.debug) if (cmd.equals("CMD_CLEAN")) { new FileClear("history"); GUI.Clear(); }
-		if (cmd.equals("CMD_UPDATE")) Update.forceUpdate();
 		if (cmd.equals("CMD_PING")) new DataServerPing();
 		if (cmd.equals("CMD_HELP")) new JServerHelp();
 	}

@@ -5,18 +5,30 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import server.JServer;
+import server.gui.GUI;
 
 public class FileRead {
-	public static String[] users = new String[JServer.serverMaxusers];
+	public static String users;
+	public static String history;
 			
 	public static boolean ReadHistory() {
 		String file = JServer.rootDir + "history";
 		String cLine;
 		
 		try (BufferedReader bReader = new BufferedReader(new FileReader(file))) {
+			int l = 0;
 			while ((cLine = bReader.readLine()) != null) {
-				if (cLine.trim().indexOf('#') == 0)	continue;
+				l++;
 			}
+			
+			int i = (l - 23);
+			while ((cLine = bReader.readLine()) != null && i < (l - 3)) {
+				if (cLine.trim().indexOf('#') == 0)	continue;
+				history = history + cLine + "#";
+				i++;
+				GUI.Append("donethat");
+			}
+			GUI.Append(history);
 			return true;
 		} catch(IOException e) {
 			return false;
@@ -49,14 +61,14 @@ public class FileRead {
 	public static boolean ReadUsers() {
 		String file = JServer.rootDir + "users";
 		String cLine;
-		
-		int i = 0;
+	
 		try (BufferedReader bReader = new BufferedReader(new FileReader(file))) {
 			while ((cLine = bReader.readLine()) != null) {
 				if (cLine.trim().indexOf('#') == 0)	continue;
-				users[i] = cLine;
-				i++;
+				users = users + cLine + "#";
+				GUI.Append("donethis");
 			}
+			GUI.Append(users);
 			return true;
 		} catch(IOException e) { 
 			return false;

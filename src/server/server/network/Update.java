@@ -6,10 +6,6 @@ import java.util.TimerTask;
 import server.database.DataServerServerlist;
 
 public class Update {
-	public static void forceUpdate() {
-		
-	}
-	
 	public static void updateStatus() {
 		final DataServerServerlist dataserverlist = new DataServerServerlist();
 		Timer updateTimer = new Timer();

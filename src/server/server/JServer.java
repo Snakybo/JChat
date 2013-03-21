@@ -56,7 +56,6 @@ public class JServer {
 				new FileClear("users");
 				if (!FileRead.ReadHistory()) PopupManager.GiveWarning("Config file could not be read!");
 				if (!FileRead.ReadConfig()) PopupManager.GiveWarning("Config file could not be read!");
-				if (!FileRead.ReadUsers()) PopupManager.GiveWarning("Config file could not be read!");
 			}
 		} else {
 			GUI.Append("Running in debug mode!");
