@@ -39,7 +39,7 @@ public class Network
 		try 
 		{ 
 			conection = new ClientConnection(new clientListener(), server, port, false);
-			conection.connect();
+			conection.connect(1000);
 			conection.send("ping#0#0#0".getBytes(), Delivery.RELIABLE);
 			conection.close();
 			return true;

@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
-public class NetworkPing extends Network
+public class NetworkPing extends Network 
 {
 	private int pingsec = 0;
 	private Timer ping = null;
