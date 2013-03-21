@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import server.database.DataServerServerlist;
+import server.file.FileClear;
 import server.file.FileCreate;
 import server.file.FileRead;
 import server.file.FileWrite;
@@ -52,8 +53,10 @@ public class JServer {
 				GUI.Append("  - Files Created!");
 			} else {
 				GUI.Append("  - Files found.");
-				FileRead.Read();
+				new FileClear("users");
+				if (!FileRead.ReadHistory()) PopupManager.GiveWarning("Config file could not be read!");
 				if (!FileRead.ReadConfig()) PopupManager.GiveWarning("Config file could not be read!");
+				if (!FileRead.ReadUsers()) PopupManager.GiveWarning("Config file could not be read!");
 			}
 		} else {
 			GUI.Append("Running in debug mode!");

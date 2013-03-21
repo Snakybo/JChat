@@ -6,28 +6,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import server.JServer;
-import server.gui.GUI;
 
 public class FileClear {
-	public static void clearHistory() {
-		GUI.Append("clearHistory");
+	public FileClear(String s) {
 		try {
-			File file = new File(JServer.rootDir + "history");
-			FileWriter fWriter = new FileWriter(file);
-			BufferedWriter bWriter = new BufferedWriter(fWriter);
-			bWriter.write(FileCreate.defText);
-			bWriter.newLine();
-			bWriter.flush();
-			bWriter.close();
-			GUI.Clear();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public static void clearConfig() {
-		try {
-			File file = new File(JServer.rootDir + "config");
+			File file = new File(JServer.rootDir + s);
 			FileWriter fWriter = new FileWriter(file);
 			BufferedWriter bWriter = new BufferedWriter(fWriter);
 			bWriter.write(FileCreate.defText);

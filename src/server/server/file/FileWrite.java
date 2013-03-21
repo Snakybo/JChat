@@ -35,7 +35,7 @@ public class FileWrite {
 						"Max Users: " + JServer.serverMaxusers,
 						};
 				
-				FileClear.clearConfig();
+				new FileClear("config");
 				FileWriter fWriter = new FileWriter(file, true);
 				BufferedWriter bWriter = new BufferedWriter(fWriter);
 				for (int i = 0; i < settings.length; i++) {
@@ -49,5 +49,20 @@ public class FileWrite {
 			}
 		}
 		return true;
+	}
+	
+	public static void WriteUsers(String s) {
+		if (!JServer.debug) {
+			try {
+				String file = JServer.rootDir + "users";
+				
+				FileWriter fWriter = new FileWriter(file, true);
+				BufferedWriter bWriter = new BufferedWriter(fWriter);
+				bWriter.write(s);
+				bWriter.newLine();
+				bWriter.flush();
+				bWriter.close();
+			} catch(IOException e) { }
+		}
 	}
 }

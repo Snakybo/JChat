@@ -7,21 +7,20 @@ import java.io.IOException;
 import server.JServer;
 
 public class FileRead {
-	public static void Read() {
-		if (!JServer.debug) {
-			ReadFile("history");
-		}
-	}
-	
-	public static void ReadFile(String f) {
-		String file = JServer.rootDir + f;
+	public static String[] users = new String[JServer.serverMaxusers];
+			
+	public static boolean ReadHistory() {
+		String file = JServer.rootDir + "history";
 		String cLine;
 		
 		try (BufferedReader bReader = new BufferedReader(new FileReader(file))) {
 			while ((cLine = bReader.readLine()) != null) {
 				if (cLine.trim().indexOf('#') == 0)	continue;
 			}
-		} catch(IOException e) { }
+			return true;
+		} catch(IOException e) {
+			return false;
+		}
 	}
 	
 	public static boolean ReadConfig() {
@@ -43,6 +42,23 @@ public class FileRead {
 			
 			return true;
 		} catch (IOException e) {
+			return false;
+		}
+	}
+	
+	public static boolean ReadUsers() {
+		String file = JServer.rootDir + "users";
+		String cLine;
+		
+		int i = 0;
+		try (BufferedReader bReader = new BufferedReader(new FileReader(file))) {
+			while ((cLine = bReader.readLine()) != null) {
+				if (cLine.trim().indexOf('#') == 0)	continue;
+				users[i] = cLine;
+				i++;
+			}
+			return true;
+		} catch(IOException e) { 
 			return false;
 		}
 	}

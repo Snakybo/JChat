@@ -29,12 +29,15 @@ public class Listen {
 		public void receive(byte[] data, Connection from) {
 			String msg = new String(data);
 			String msgParts[] = msg.split("#");
-			from.send(data, Delivery.RELIABLE);
-			
+			from.send("history".getBytes(), Delivery.RELIABLE);
+			from.send("users".getBytes(), Delivery.RELIABLE);
+			from.send("cmd".getBytes(), Delivery.RELIABLE);
+			from.send("end".getBytes(), Delivery.RELIABLE);
 			
 			if (msgParts[0].equals("command")) {
 				if (msgParts[4].equals("null")) {
 					Send.runCommand(msgParts[3]);
+					if (!JServer.debug) if (msgParts[3] != "CMD_CLEAR") FileWrite.WriteHistory(JServer.getTime(), msgParts[2], msgParts[3]);
 				} else {
 					Send.runCommandWithPar(msgParts[3], msgParts[4]);
 				}
@@ -42,11 +45,16 @@ public class Listen {
 				System.out.println(msgParts[3]);
 			} else if (msgParts[0].equals("message")) {
 				GUI.Append(msgParts[2] + ": " + msgParts[3]);
+				if (!JServer.debug) FileWrite.WriteHistory(JServer.getTime(), msgParts[2], msgParts[3]);
+			} else if (msgParts[0].equals("check")) {
+				
 			}
 			
-			if (!JServer.debug) {
-				FileWrite.WriteHistory(JServer.getTime(), msgParts[2], msgParts[3]);
-			}
+			if (!JServer.debug) { FileWrite.WriteUsers(msgParts[2]); }
 		}
+	}
+	
+	public static void PrepareSend() {
+		
 	}
 }
