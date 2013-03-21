@@ -17,6 +17,7 @@ public class Client
     public static String ServerIP = "localhost";
     public static int ServerPort = 1337;
     public static String Database = "jchat.ted80.net";
+    public static boolean Connected = false;
  
     public Client()
     {

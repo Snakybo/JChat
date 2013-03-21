@@ -8,7 +8,7 @@ import jexxus.common.ConnectionListener;
 import jexxus.common.Delivery;
 import jexxus.server.ServerConnection;
 import client.Client;
-import client.gui.GuiChat;
+import client.gui.*;
 
 public class Network
 {
@@ -20,12 +20,18 @@ public class Network
 		try 
 		{ 
 			conection = new ClientConnection(new clientListener(), Client.ServerIP, Client.ServerPort, false);
-			conection.connect();
+			conection.connect(1000);
 			conection.send(info.getBytes(), Delivery.RELIABLE);
-			conection.close();
+			Client.Connected = true;
 		}
 		catch(Exception exception)
-		{ System.out.println("Message cannot be send :("); }
+		{ 
+			if(Client.Connected == true)
+			{
+				GuiChat.DisplayMessage("Lost connection to server! reconnecting...");
+				Client.Connected = false;
+			}
+		}
 	}
 	
 	public boolean pingToServer(String server, int port)
@@ -52,8 +58,15 @@ public class Network
 
 		public void receive(byte[] data, Connection from) 
 		{
-			Calendar calendar = Calendar.getInstance();
-			GuiChat.DisplayMessage("[" + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + "] " + "SERVER" + ": " + new String(data));
+			if(new String(data).equals("end") && conection.isConnected())
+			{
+				conection.close();
+			}
+			else
+			{
+				Calendar calendar = Calendar.getInstance();
+				GuiChat.DisplayMessage("[" + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + "] " + "SERVER" + ": " + new String(data));
+			}
 		}
 
 		public void clientConnected(ServerConnection conn) 

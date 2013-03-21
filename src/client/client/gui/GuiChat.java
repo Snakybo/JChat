@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.Timer;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -26,6 +27,8 @@ public class GuiChat extends JPanel
 	
 	private NetworkMessage message = new NetworkMessage();
 	private NetworkCommand command = new NetworkCommand();
+	private NetworkCheck check = new NetworkCheck();
+	private Timer checktimer;
 	
 	public GuiChat()
 	{
@@ -50,6 +53,16 @@ public class GuiChat extends JPanel
 		chatfield.setEditable(false); 
 		userfield.setEditable(false); 
 		chatnew.requestFocusInWindow();
+		
+		checktimer = new Timer(2000, new ActionListener()  
+		{
+			public void actionPerformed(ActionEvent e)  
+			{
+				check.sendCheck();
+			}
+		});  
+		checktimer.start();
+
 		
 	  	chatSend.addActionListener(new ActionListener()  {
             public void actionPerformed(ActionEvent e)  {
@@ -85,6 +98,7 @@ public class GuiChat extends JPanel
 	
 	public void guiChatDestroy()
 	{		
+		checktimer.stop();
 		remove(userfield);
 		remove(chatfield);
 		remove(chatSettings);

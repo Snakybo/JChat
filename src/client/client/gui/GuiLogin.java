@@ -43,7 +43,7 @@ public class GuiLogin extends JPanel
 		loginserver = new JTextField(18);
 		loginbutton = new JButton("login");
 		registerbutton = new JButton("register");
-		textwarning = new JLabel("!WARNING MESSAGE!", JLabel.CENTER);
+		textwarning = new JLabel("", JLabel.CENTER);
 		textwarning.setForeground(Color.red);
 		serverlistfield = new JTextArea("Loading serverlist...");
 		serverlistfield.setEditable(false);
@@ -106,10 +106,9 @@ public class GuiLogin extends JPanel
 			if(list[i][1] != null)
 			{
 				String users = list[i][2].replaceAll(":", "/");
-				serverlistfield.append(list[i][0] + "   " + list[i][1] + "   " + users + "\n");
+				//String[] serverpath = list[i][1].split(":");
 				//int serverping = ping.PingServer(serverpath[0], Integer.parseInt(serverpath[1]));
-				//if(serverping < 999) { System.out.println("name:" + list[i][0] + " ip:" + list[i][1] + " users:" + list[i][2] +  " ping:" + serverping); }
-				//else { System.out.println("name:" + list[i][0] + " ip:" + list[i][1] + " users:" + list[i][2] +  " ping:" + serverping); }
+				serverlistfield.append(list[i][0] + "   " + list[i][1] + "   " + users + /*"   " + serverping +*/ "\n");
 			}
 		}
 	}

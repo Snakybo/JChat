@@ -1,10 +1,11 @@
 package client.gui;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
-
 import client.Client;
+import client.database.DataClientLogin;
+//import client.database.DataClientServerlist;
 
 public class Gui extends JFrame
 {	
@@ -14,6 +15,7 @@ public class Gui extends JFrame
 	
 	private GuiChat chat = new GuiChat();
 	private GuiLogin login = new GuiLogin();
+	private DataClientLogin databaselogin = new DataClientLogin();
 	
 	public Gui(int width, int height, int version)
 	{
@@ -51,16 +53,32 @@ public class Gui extends JFrame
 			{
 	            public void actionPerformed(ActionEvent e) 
 	            {
-	            	String[] serverpath = login.loginserver.getText().split(":");
-	            	if(serverpath[0] != null && serverpath[1] != null)
+	            	int trylogin = databaselogin.Login(login.loginname.getText(), new String(login.loginpass.getPassword()));
+	            	if(trylogin == 1) 
 	            	{
-	                	Client.ServerIP = serverpath[0];
-	                	Client.ServerPort = Integer.parseInt(serverpath[1]);
-	                	Client.ClientName = login.loginname.getText();
-	                	Client.ClientNick = login.loginname.getText();
-	                	//Client.ClientPass = login.loginpass.getText();
-	                	guiDelete(1);
-	                	guiCreate(3); 
+		            	String[] serverpath = login.loginserver.getText().split(":");
+		            	if(serverpath[0] == null && serverpath[1] == null)
+		            	{
+		            		login.textwarning.setText("Please enter a server");
+		            	}
+		            	else
+		            	{
+		                	Client.ServerIP = serverpath[0];
+		                	Client.ServerPort = Integer.parseInt(serverpath[1]);
+		                	Client.ClientName = login.loginname.getText();
+		                	Client.ClientNick = login.loginname.getText();
+		                	Client.ClientPass = new String(login.loginpass.getPassword());
+		                	guiDelete(1);
+		                	guiCreate(3); 
+		            	}
+	            	}
+	            	if(trylogin == 2)
+	            	{
+	            		login.textwarning.setText("Username not found!");
+	            	}
+	            	if(trylogin == 3)
+	            	{
+	            		login.textwarning.setText("Name and pass don't match!");
 	            	}
 	            }
 			});	
