@@ -54,8 +54,10 @@ public class Listen {
 					FileWrite.WriteUsers(msgParts[2]); 
 				}
 			} else if (msgParts[0].equals("check")) {
-				checkRespond();
-				GUI.Append("check");
+				if (!JServer.debug) { 
+					FileWrite.WriteUsers(msgParts[2]); 
+					checkRespond();
+				}
 			}
 		}
 	}
@@ -63,7 +65,7 @@ public class Listen {
 	public static void checkRespond() {
 		FileRead.ReadHistory();
 		FileRead.ReadUsers();
-		GUI.Append(FileRead.history);
-		GUI.Append(FileRead.users);
+//		GUI.Append(FileRead.history);
+//		GUI.Append(FileRead.users);
 	}
 }
