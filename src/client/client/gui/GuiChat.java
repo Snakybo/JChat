@@ -101,11 +101,11 @@ public class GuiChat extends JPanel
 			char cmdcheck = info.charAt(0);
 			if (cmdcheck == '/')
 			{
-				command.NewCommand(Client.ClientName, Client.ClientPass, info.substring(1));
+				command.NewCommand(Client.ClientName, Client.ClientNick, info.substring(1));
 			}
 			else
 			{
-				message.SendClientMessage(Client.ClientName, Client.ClientPass, info);
+				message.SendClientMessage(Client.ClientName, Client.ClientNick, Client.ClientPass, info);
 			}
 		}
 	}

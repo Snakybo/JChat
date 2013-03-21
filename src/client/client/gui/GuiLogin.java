@@ -1,9 +1,6 @@
 package client.gui;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,11 +17,11 @@ public class GuiLogin extends JPanel
 {
 	private static final long serialVersionUID = 1L;
 	
-	private JLabel texttitle, textname, textpass, textserver, textwarning, textserverlist;
-	private JTextField loginname, loginserver;
-	private JPasswordField loginpass;
-	private JButton loginbutton, registerbutton;
-	private JTextArea serverlistfield;
+	public JLabel texttitle, textname, textpass, textserver, textwarning, textserverlist;
+	public JTextField loginname, loginserver;
+	public JPasswordField loginpass;
+	public JButton loginbutton, registerbutton;
+	public JTextArea serverlistfield;
 	
 	//private NetworkPing ping = new NetworkPing();
 	private DataClientServerlist serverlist = new DataClientServerlist();
@@ -63,21 +60,7 @@ public class GuiLogin extends JPanel
 		registerbutton.setBounds((width / 2) - 130, (height / 2) + 50, 90, 20); 
 		textwarning.setBounds((width / 2) - 235, (height / 2) + 15, 200, 20); 
 		serverlistfield.setBounds((width / 2) + 10, (height / 2) - 205, 270, 375); 
-		textserverlist.setBounds((width / 2) + 100, (height / 2) - 230, 100, 20); 
-
-		loginbutton.addActionListener(new ActionListener() 
-		{
-            public void actionPerformed(ActionEvent e) 
-            {
-            	String[] serverpath = loginserver.getText().split(":");
-            	if(serverpath[0] != null && serverpath[1] != null)
-            	{
-                	Client.ServerIP = serverpath[0];
-                	Client.ServerPort = Integer.parseInt(serverpath[1]);
-                	//Client.guiSwitch(1, 3); 
-            	}
-            }
-		});		
+		textserverlist.setBounds((width / 2) + 100, (height / 2) - 230, 100, 20); 	
 		
 		add(texttitle);
 		add(textname);

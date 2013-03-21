@@ -5,10 +5,10 @@ import client.gui.GuiChat;
 
 public class NetworkMessage extends Network
 {	
-	public void SendClientMessage(String name, String pass, String message)
+	public void SendClientMessage(String name, String nick, String pass, String message)
 	{
 		String info = "";
-		info = "message#" + name + "#" + "client" + "#" + translate(message);
+		info = "message#" + name + "#" + nick + "#" + translate(message);
 		sendInfoToServer(info);
 		
 		Calendar calendar = Calendar.getInstance();
