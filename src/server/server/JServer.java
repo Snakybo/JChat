@@ -47,14 +47,14 @@ public class JServer {
 		if (!debug) {
 			GUI.Append("Checking for server files..");
 			if (!FileCreate.Check()) {
-				GUI.Append("[" + getTime() + "]   - Files missing! Creating..");
+				GUI.Append("  - Files missing! Creating..");
 				if (!FileCreate.Create()) PopupManager.CloseWithError("Server could not create files.");
 				if (!FileWrite.WriteConfig()) PopupManager.CloseWithError("Could not write to files.");
 				GUI.Append("  - Files Created!");
 			} else {
 				GUI.Append("  - Files found.");
 				new FileClear("users");
-				if (!FileRead.ReadHistory()) PopupManager.GiveWarning("Config file could not be read!");
+				FileRead.ReadHistory();
 				if (!FileRead.ReadConfig()) PopupManager.GiveWarning("Config file could not be read!");
 			}
 		} else {
