@@ -3,13 +3,13 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import server.database.DataServerServerlist;
 import server.file.FileClear;
 import server.file.FileCreate;
 import server.file.FileRead;
 import server.file.FileWrite;
 import server.gui.GUI;
 import server.gui.PopupManager;
+import server.mainserver.MainServerServerlist;
 import server.network.GetIP;
 import server.network.Listen;
 import server.network.Update;
@@ -25,7 +25,7 @@ public class JServer {
 	public static int serverMaxusers = 100;
     public static int serverUsers = 0;
 	public static String serverIP = GetIP.ExtIP();
-	public static String serverName = "Default Name";
+	public static String serverName = "JChat Server";
     public static String database = "jchat.ted80.net";
     
     private static boolean defName = false;
@@ -35,7 +35,6 @@ public class JServer {
 		if (args.length > 0) {
 			for (int i = 0; i < args.length; i++) {
 				if (args[i].equals("debug")) debug = true;
-				if (args[i].equals("offline")) offline = true;;
 			}
 		}
 
@@ -49,13 +48,14 @@ public class JServer {
 			if (!FileCreate.Check()) {
 				GUI.Append("  - Files missing! Creating..");
 				if (!FileCreate.Create()) PopupManager.CloseWithError("Server could not create files.");
-				if (!FileWrite.WriteConfig()) PopupManager.CloseWithError("Could not write to files.");
+				FileWrite.WriteConfig();
 				GUI.Append("  - Files Created!");
 			} else {
 				GUI.Append("  - Files found.");
 				new FileClear("users");
 				FileRead.ReadHistory();
-				if (!FileRead.ReadConfig()) PopupManager.GiveWarning("Config file could not be read!");
+				FileRead.ReadOPs();
+				FileRead.ReadConfig();
 			}
 		} else {
 			GUI.Append("Running in debug mode!");
@@ -64,28 +64,24 @@ public class JServer {
 		if (serverName.equals("Default Name")) defName = true;
 		
 		// Start listening
-		if (!offline) {
-			if (!defName) {
+		if (!defName) {
+			startServer();
+		} else { 
+			if (!debug) {
+				String s = PopupManager.ShowInput("Server Name:", "Server Name");
+				serverName = s;
+				FileWrite.WriteConfig();
 				startServer();
-			} else { 
-				if (!debug) {
-					String s = PopupManager.ShowInput("Server Name:", "Server Name");
-					serverName = s;
-					if (!FileWrite.WriteConfig()) PopupManager.CloseWithError("Could not write to files.");
-					startServer();
-				} else {
-					startServer();
-				}
+			} else {
+				startServer();
 			}
-		} else {
-			GUI.Append("Running in offline mode!");
 		}
 	}
 	
 	// Start the server services
 	private static void startServer() {
 		GUI.Append("Attempting to start services..");
-		new DataServerServerlist().UpdateServer();
+		new MainServerServerlist().UpdateServer();
 		Update.updateStatus();
 		new Listen();
 	}

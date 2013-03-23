@@ -1,12 +1,10 @@
 package server.network;
 
 import server.JServer;
-import server.JServerHelp;
-import server.database.DataServerPing;
 import server.file.FileClear;
 import server.file.FileWrite;
 import server.gui.GUI;
-import server.network.user.User;
+import server.mainserver.MainServerPing;
 
 public class Send {
 	private static String[][] commands = {
@@ -17,7 +15,6 @@ public class Send {
 		{"CMD_UNBANGLOB", "unbanip"},
 		{"CMD_UNBAN", "unban"},
 		{"CMD_PING", "ping"},
-		{"CMD_HELP", "help", "h"},
 		{"CMD_ADDOP", "op"},
 		{"CMD_DEOP", "deop"},
 	};
@@ -58,9 +55,8 @@ public class Send {
 	}
 	
 	public static void runCommand(String cmd) {
-		if (!JServer.debug) if (cmd.equals("CMD_CLEAN")) { new FileClear("history"); GUI.Clear(); }
-		if (cmd.equals("CMD_PING")) new DataServerPing();
-		if (cmd.equals("CMD_HELP")) new JServerHelp();
+		if (!JServer.debug) if (cmd.equals("CMD_CLEAN")) { new FileClear("history"); GUI.txtArea.setText(""); }
+		if (cmd.equals("CMD_PING")) new MainServerPing();
 	}
 	
 	public static void runCommandWithPar(String cmd, String par) {

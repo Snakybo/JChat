@@ -13,9 +13,6 @@ public class FileClear {
 			File file = new File(JServer.rootDir + s);
 			FileWriter fWriter = new FileWriter(file);
 			BufferedWriter bWriter = new BufferedWriter(fWriter);
-			bWriter.write(FileCreate.defText);
-			bWriter.newLine();
-			bWriter.flush();
 			bWriter.close();
 		} catch (IOException e) {
 			e.printStackTrace();

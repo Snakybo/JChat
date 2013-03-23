@@ -1,6 +1,14 @@
-package server.network.user;
+package server.network;
 
 public class User {
+	public static void addToOnlineList() {
+		
+	}
+	
+	public static void removeFromOnlineList() {
+		
+	}
+	
 	public static void kick() {
 		
 	}

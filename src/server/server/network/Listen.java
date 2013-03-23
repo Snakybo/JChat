@@ -2,11 +2,9 @@ package server.network;
 
 import jexxus.common.Connection;
 import jexxus.common.ConnectionListener;
-import jexxus.common.Delivery;
 import jexxus.server.Server;
 import jexxus.server.ServerConnection;
 import server.JServer;
-import server.file.FileRead;
 import server.file.FileWrite;
 import server.gui.GUI;
 
@@ -28,44 +26,33 @@ public class Listen {
 		public void clientConnected(ServerConnection conn) { }
 
 		public void receive(byte[] data, Connection from) {
-			String msg = new String(data);
-			String msgParts[] = msg.split("#");
-			from.send("history".getBytes(), Delivery.RELIABLE);
-			from.send("users".getBytes(), Delivery.RELIABLE);
-			from.send("cmd".getBytes(), Delivery.RELIABLE);
-			from.send("end".getBytes(), Delivery.RELIABLE);
+			String r = new String(data);
+			String rParts[] = r.split("#");
 			
-			if (msgParts[0].equals("command")) {
-				if (msgParts[4].equals("null")) {
-					Send.runCommand(msgParts[3]);
+			new SendClientInfo(from);
+			System.out.println(rParts[0]);
+			
+			// Handle commands
+			if (rParts[0].equals("command")) {
+				if (rParts[4].equals("null")) {
+					GUI.txtArea.setText("");
 					if (!JServer.debug) {
-						if (msgParts[3] != "CMD_CLEAR") FileWrite.WriteHistory(JServer.getTime(), msgParts[2], msgParts[3]);
-						FileWrite.WriteUsers(msgParts[2]); 
+						FileWrite.WriteUsers(rParts[2]); 
+						if (rParts[3] != "CMD_CLEAR") FileWrite.WriteHistory(JServer.getTime(), rParts[2], rParts[3]);
 					}
 				} else {
-					Send.runCommandWithPar(msgParts[3], msgParts[4]);
+					Send.runCommandWithPar(rParts[3], rParts[4]);
 				}
-
-				System.out.println(msgParts[3]);
-			} else if (msgParts[0].equals("message")) {
-				GUI.Append(msgParts[2] + ": " + msgParts[3]);
+			}
+			
+			// Handle messages
+			if (rParts[0].equals("message")) {
+				GUI.Append(rParts[2] + ": " + rParts[3]);
 				if (!JServer.debug) { 
-					FileWrite.WriteHistory(JServer.getTime(), msgParts[2], msgParts[3]);
-					FileWrite.WriteUsers(msgParts[2]); 
-				}
-			} else if (msgParts[0].equals("check")) {
-				if (!JServer.debug) { 
-					FileWrite.WriteUsers(msgParts[2]); 
-					checkRespond();
+					FileWrite.WriteHistory(JServer.getTime(), rParts[2], rParts[3]);
+					FileWrite.WriteUsers(rParts[2]); 
 				}
 			}
 		}
-	}
-	
-	public static void checkRespond() {
-		FileRead.ReadHistory();
-		FileRead.ReadUsers();
-//		GUI.Append(FileRead.history);
-//		GUI.Append(FileRead.users);
 	}
 }

@@ -1,15 +1,12 @@
 package server.file;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 
 import server.JServer;
 
 public class FileCreate {
 	public static String[] files = {"history", "config", "users", "ops"};
-	public static String defText = "# JChat Server File\n# Copyright Ted80 and Snakybo\n#";
 	
 	public static Boolean Check() {
 		// Folder
@@ -44,32 +41,24 @@ public class FileCreate {
 	private static boolean CreateFolder(String f) {
 		try {
 			File file = new File(JServer.rootDir);
-			if (!file.mkdir()) return false;
-			return true;
+			if (file.mkdir()) return true;
 		} catch(Exception e) {
 			e.printStackTrace();
 			return false;
 		}
+		return false;
 	}
 	
 	// Create a file
 	private static boolean CreateFile(String f) {
 		try {
 			File file = new File(JServer.rootDir + f);
-			if (file.createNewFile()) {
-				FileWriter fWriter = new FileWriter(file);
-				BufferedWriter bWriter = new BufferedWriter(fWriter);
-				bWriter.write(defText);
-				bWriter.newLine();
-				bWriter.flush();
-				bWriter.close();
+			if (file.createNewFile())
 				return true;
-			} else{
-				return false;
-			}
 		} catch (IOException e) {
 			e.printStackTrace();
 			return false;
 		}
+		return false;
 	}
 }

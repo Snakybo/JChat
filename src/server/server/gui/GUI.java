@@ -26,7 +26,7 @@ import server.network.Send;
 public class GUI extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 2941318999657277463L;
 	
-	private static JTextPane txtArea;
+	public static JTextPane txtArea;
 	private JPanel panel;
 	
 	private JLabel olbl1, olbl2, olbl3, ilbl1, ilbl2;
@@ -201,11 +201,6 @@ public class GUI extends JFrame implements ActionListener {
 			e.printStackTrace();
 		}
 	}
-	
-	// Clear the txtArea
-	public static void Clear() {
-		txtArea.setText("");
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
@@ -234,18 +229,11 @@ public class GUI extends JFrame implements ActionListener {
 						JServer.serverName = otxtField2.getText();
 						JServer.serverMaxusers = Integer.parseInt(otxtField3.getText());
 						
-						if (!FileWrite.WriteConfig()) {
-							PopupManager.GiveWarning("Could not save configuration");
-						} else {
-							if (PopupManager.AskClose("Server settings saved, close server?", "Settings saved") == 0) {
-								System.exit(0);
-							}
+						FileWrite.WriteConfig();
+						if (PopupManager.AskClose("Server settings saved, close server?", "Settings saved") == 0) {
+							System.exit(0);
 						}
-					} else {
-						PopupManager.GiveWarning("Could not save configuration");
 					}
-				} else {
-					PopupManager.GiveWarning("Could not save configuration");
 				}
 			} else {
 				PopupManager.GiveWarning("Can not save while in debug mode");
