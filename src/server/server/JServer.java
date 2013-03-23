@@ -3,13 +3,13 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import server.database.DatabaseServerlist;
 import server.file.FileClear;
 import server.file.FileCreate;
 import server.file.FileRead;
 import server.file.FileWrite;
 import server.gui.GUI;
 import server.gui.PopupManager;
-import server.mainserver.MainServerServerlist;
 import server.network.GetIP;
 import server.network.Listen;
 import server.network.Update;
@@ -46,12 +46,9 @@ public class JServer {
 		if (!debug) {
 			GUI.Append("Checking for server files..");
 			if (!FileCreate.Check()) {
-				GUI.Append("  - Files missing! Creating..");
-				if (!FileCreate.Create()) PopupManager.CloseWithError("Server could not create files.");
+				if (!FileCreate.Create("")) PopupManager.CloseWithError("Server could not create files.");
 				FileWrite.WriteConfig();
-				GUI.Append("  - Files Created!");
 			} else {
-				GUI.Append("  - Files found.");
 				new FileClear("users");
 				FileRead.ReadHistory();
 				FileRead.ReadOPs();
@@ -81,7 +78,7 @@ public class JServer {
 	// Start the server services
 	private static void startServer() {
 		GUI.Append("Attempting to start services..");
-		new MainServerServerlist().UpdateServer();
+		new DatabaseServerlist().UpdateServer();
 		Update.updateStatus();
 		new Listen();
 	}

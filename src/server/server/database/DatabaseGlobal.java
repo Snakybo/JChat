@@ -1,8 +1,8 @@
-package server.mainserver;
+package server.database;
 
 import server.JServer;
 
-public class MainServerGlobal extends MainServer {
+public class DatabaseGlobal extends Database {
 	public void GlobalBan(String op, String name) {
 		boolean connection = sendData("http://" + JServer.database + "/?type=OP_BANIP&name=" + op + "&data=" + name);
 		if(!connection)	{

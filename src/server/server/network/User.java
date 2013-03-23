@@ -1,11 +1,13 @@
 package server.network;
 
 public class User {
-	public static void addToOnlineList() {
+	public static String users;
+	
+	public static void addToOnlineList(String usr) {
 		
 	}
 	
-	public static void removeFromOnlineList() {
+	public static void removeFromOnlineList(String usr) {
 		
 	}
 	

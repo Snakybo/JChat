@@ -3,11 +3,11 @@ package server.network;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import server.mainserver.MainServerServerlist;
+import server.database.DatabaseServerlist;
 
 public class Update {
 	public static void updateStatus() {
-		final MainServerServerlist dataserverlist = new MainServerServerlist();
+		final DatabaseServerlist dataserverlist = new DatabaseServerlist();
 		Timer updateTimer = new Timer();
 		int updateTime = 6*60*1000;
 		

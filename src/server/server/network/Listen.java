@@ -29,16 +29,13 @@ public class Listen {
 			String r = new String(data);
 			String rParts[] = r.split("#");
 			
-			new SendClientInfo(from);
-			System.out.println(rParts[0]);
-			
 			// Handle commands
 			if (rParts[0].equals("command")) {
 				if (rParts[4].equals("null")) {
 					GUI.txtArea.setText("");
 					if (!JServer.debug) {
-						FileWrite.WriteUsers(rParts[2]); 
-						if (rParts[3] != "CMD_CLEAR") FileWrite.WriteHistory(JServer.getTime(), rParts[2], rParts[3]);
+						User.addToOnlineList(rParts[2]);
+						if (rParts[3] != "CMD_CLEAR") FileWrite.WriteHistory(rParts[2], rParts[3]);
 					}
 				} else {
 					Send.runCommandWithPar(rParts[3], rParts[4]);
@@ -49,10 +46,12 @@ public class Listen {
 			if (rParts[0].equals("message")) {
 				GUI.Append(rParts[2] + ": " + rParts[3]);
 				if (!JServer.debug) { 
-					FileWrite.WriteHistory(JServer.getTime(), rParts[2], rParts[3]);
-					FileWrite.WriteUsers(rParts[2]); 
+					User.addToOnlineList(rParts[2]);
+					FileWrite.WriteHistory(rParts[2], rParts[3]);
 				}
 			}
+			
+			new SendClientInfo(from);
 		}
 	}
 }

@@ -1,8 +1,8 @@
-package server.mainserver;
+package server.database;
 
 import server.JServer;
 
-public class MainServerServerlist extends MainServer {
+public class DatabaseServerlist extends Database {
 	public String[][] translatechars = {{" ","%20"},{"&","[a]"},{"#","[n]"}};
 	
 	public void UpdateServer() {

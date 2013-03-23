@@ -58,6 +58,7 @@ public class GUI extends JFrame implements ActionListener {
 		
 		txtField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		txtField.setBounds(5, 415, 200, 20);
+		txtField.requestFocusInWindow();
 		
 		btn1.setText("Send");
 		btn2.setText("Config");

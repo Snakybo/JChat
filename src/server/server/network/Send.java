@@ -1,10 +1,10 @@
 package server.network;
 
 import server.JServer;
+import server.database.DatabasePing;
 import server.file.FileClear;
 import server.file.FileWrite;
 import server.gui.GUI;
-import server.mainserver.MainServerPing;
 
 public class Send {
 	private static String[][] commands = {
@@ -56,7 +56,7 @@ public class Send {
 	
 	public static void runCommand(String cmd) {
 		if (!JServer.debug) if (cmd.equals("CMD_CLEAN")) { new FileClear("history"); GUI.txtArea.setText(""); }
-		if (cmd.equals("CMD_PING")) new MainServerPing();
+		if (cmd.equals("CMD_PING")) new DatabasePing();
 	}
 	
 	public static void runCommandWithPar(String cmd, String par) {
@@ -72,7 +72,7 @@ public class Send {
 	private static void sendMessage(String msg) {
 		GUI.Append("Server: " + msg);
 		if (!JServer.debug) {
-			FileWrite.WriteHistory(JServer.getTime(), "Server", msg);
+			FileWrite.WriteHistory("Server", msg);
 		}
 	}
 }

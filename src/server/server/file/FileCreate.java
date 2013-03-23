@@ -6,7 +6,7 @@ import java.io.IOException;
 import server.JServer;
 
 public class FileCreate {
-	public static String[] files = {"history", "config", "users", "ops"};
+	public static String[] files = {"history", "config", "ops"};
 	
 	public static Boolean Check() {
 		// Folder
@@ -26,11 +26,10 @@ public class FileCreate {
 		return true;
 	}
 	
-	public static boolean Create() {
+	public static boolean Create(String f) {
 		if (!CreateFolder("server")) return false; 	// Root directory
 		if (!CreateFile("history")) return false;	// History
 		if (!CreateFile("config")) return false;	// Config
-		if (!CreateFile("users")) return false;		// Users
 		if (!CreateFile("ops")) return false;		// OPs
 		
 		if (!Check()) return false;
@@ -43,7 +42,6 @@ public class FileCreate {
 			File file = new File(JServer.rootDir);
 			if (file.mkdir()) return true;
 		} catch(Exception e) {
-			e.printStackTrace();
 			return false;
 		}
 		return false;
@@ -56,7 +54,6 @@ public class FileCreate {
 			if (file.createNewFile())
 				return true;
 		} catch (IOException e) {
-			e.printStackTrace();
 			return false;
 		}
 		return false;

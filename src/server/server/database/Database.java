@@ -1,4 +1,4 @@
-package server.mainserver;
+package server.database;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class MainServer {
+public class Database {
 	private URL url = null;
 	private BufferedReader in = null;
 	

@@ -62,7 +62,7 @@ public class Gui extends JFrame
 	            	else if(new String(login.loginpass.getPassword()).length() == 0) { login.textwarning.setText("Please enter a password"); }
 	            	else
 	            	{
-		            	int trylogin = databaselogin.Login(login.loginname.getText(), new String(login.loginpass.getPassword()));
+		            	int trylogin = databaselogin.Login(login.loginname.getText().toLowerCase(), new String(login.loginpass.getPassword()));
 		            	if(trylogin == 1) 
 		            	{
 		                	Client.ServerIP = serverpath[0];
@@ -105,7 +105,7 @@ public class Gui extends JFrame
 	            	else if(new String(register.registerpass.getPassword()).length() == 0) { register.textwarning.setText("Please enter a password"); }
 	            	else
 	            	{
-		            	int trylogin = databaseregister.Register(register.registername.getText(), new String(register.registerpass.getPassword()));
+		            	int trylogin = databaseregister.Register(register.registername.getText().toLowerCase(), new String(register.registerpass.getPassword()));
 		            	if(trylogin == 1) 
 		            	{
 		                	Client.ServerIP = serverpath[0];

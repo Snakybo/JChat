@@ -1,5 +1,6 @@
 package server.network;
 
+import server.file.FileRead;
 import jexxus.common.Connection;
 import jexxus.common.Delivery;
 
@@ -12,11 +13,12 @@ public class SendClientInfo {
 	}
 	
 	public String getHistory() {
-		return "null";
+		FileRead.ReadHistory();
+		return FileRead.history;
 	}
 	
 	public String getUsers() {
-		return "null";
+		return User.users;
 	}
 	
 	public String getCommand() {
