@@ -1,4 +1,9 @@
 JChat
 =====
 
-The best IRC in Java ever!
+Client-Server Chat program made with Java
+
+=====
+
+Required libraries:
+  - Jexxus 1.4.2
